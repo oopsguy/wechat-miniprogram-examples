@@ -1,6 +1,6 @@
 # WechatSmallApps
 
-微信小应用小例子
+微信小程序小例子
 
 ## Examples
 
