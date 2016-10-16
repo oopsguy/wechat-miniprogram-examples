@@ -20,6 +20,10 @@
 
 ![侧栏菜单](http://oeiyvmnx5.bkt.clouddn.com/zhihuribao_slide.png)
 
+![详细页面1](http://oeiyvmnx5.bkt.clouddn.com/zhihuribao_detail.png)
+
+![详细页面2](http://oeiyvmnx5.bkt.clouddn.com/zhihuribao_detail2.png)
+
 ![内容分享](http://oeiyvmnx5.bkt.clouddn.com/zhihuribao_share.png)
 
 ![评论页面](http://oeiyvmnx5.bkt.clouddn.com/zhihuribao_comment.png)
