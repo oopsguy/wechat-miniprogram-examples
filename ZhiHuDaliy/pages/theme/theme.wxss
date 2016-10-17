@@ -1,0 +1,21 @@
+.editors {
+    padding: 20rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    background: #FAFAFA;
+}
+.editors text,
+.editors image {
+    float: left
+}
+.editors text {
+    color: #AAA;
+    margin-right: 40rpx;
+    font-size: 30rpx;
+}
+.editors image {
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+}
