@@ -1,11 +1,14 @@
 <view style="display:{{pageShow}}">
-    <view class="header-cover">
+    <view class="header-cover" wx:if="{{news.image}}">
         <image mode="aspectFill" src="{{news.image}}"></image>
         <view class="mask"></view>
         <view class="desc">
             <text>{{news.title}}</text>
         </view>
         <text class="cover-source">{{news.image_source}}</text>
+    </view>
+    <view class="black-desc" wx:else>
+            <text>{{news.title}}</text>
     </view>
 
 

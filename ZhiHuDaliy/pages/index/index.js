@@ -64,6 +64,7 @@ Page( {
     var _this = this;
     _this.setData( { loading: true });
     requests.getNewsLatest(( data ) => {
+      data=utils.correctData(data);
       console.log( data );
       _this.setData( {
         sliderData: data.top_stories,
@@ -98,7 +99,8 @@ Page( {
     d = d > 9 ? d : '0' + d;
     var dateStr = [ y, m, d ].join( '' );
     requests.getBeforeNews( dateStr, ( data ) => {
-      console.log( data )
+      data=utils.correctData(data);
+      console.log( data );
       pageData = _this.data.pageData;
       pageData.push( { type: '3', title: ( [ y, m, d ].join( '.' ) + '  星期' + weekdayStr[ date.getDay() ] ) });
       pageData = pageData.concat( data.stories );
