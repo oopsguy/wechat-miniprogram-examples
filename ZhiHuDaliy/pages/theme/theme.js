@@ -23,8 +23,12 @@ Page( {
     var _this = this;
     this.setData( { loading: true });
     requests.getThemeStories( _this.data.id, ( data ) => {
-      data.background=data.background.replace("pic1","pic4");
-      data.background=data.background.replace("pic2","pic4");
+      console.log(data.background);
+      data.background=data.background.replace("pic1","pic3");
+      data.background=data.background.replace("pic2","pic3");
+      //data.background=data.background.replace("p2","pic3");
+      //data.background=data.background.replace("p3","pic3");
+      //data.background=data.background.replace("p1","pic3");
       for(var i=0;i<data.editors.length;i++){
         data.editors[i].avatar=data.editors[i].avatar.replace("pic1","pic3");
         data.editors[i].avatar=data.editors[i].avatar.replace("pic2","pic3");

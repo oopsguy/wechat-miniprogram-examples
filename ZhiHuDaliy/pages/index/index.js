@@ -12,7 +12,8 @@ Page( {
     currentDate: new Date(),
     refreshAnimation: {}, //加载更多旋转动画数据
     loadingMore: false, //是否正在加载
-    avatarUrl: '', //当前开发者头像T_T
+    avatarUrl: '', //当前开发者头像
+    nickName: '', //当前开发者名字
 
     loading: false,
     loadingMsg: '加载中...',
@@ -30,7 +31,17 @@ Page( {
     ballBottom: 20,
     ballRight: 30,
     ballOpacity: '.8',
-    modalMsgHidden: true
+    modalMsgHidden: true,
+    themeId:0,//当前主题id
+
+    id: null,
+    //pageShow: 'display',
+    background: '',
+    //pageData: [], //列表数据源
+    editorData: [], //主编数据
+    description: '',
+    //loading: false,
+    //loadingMsg: '数据加载中...'
   },
 
   //获取设备信息，屏幕的高度宽度
@@ -50,22 +61,32 @@ Page( {
 
     var app = getApp();
     app.getUserInfo(function(data) {
-      _this.setData({avatarUrl: data.avatarUrl});
+      _this.setData({avatarUrl: data.avatarUrl,nickName :data.nickName});
     });
   },
 
-  //显示当前日期
+  //从详细页面返回时会刷新
   onShow: function() {
-    var date = utils.getCurrentData();
-    this.setData( { currentDateStr: date.year + '.' + date.month + '.' + date.day + '　' + '星期' + weekdayStr[ date.weekday ] });
+    if (this.data.themeId==-1){
+      var pageData = wx.getStorageSync('pageData') || []
+      console.log(pageData);
+      this.setData({
+        pageData:pageData
+      })
+    }
   },
 
   onReady: function() {
+
+    var date = utils.getCurrentData();
+    this.setData( { currentDateStr: date.year + '.' + date.month + '.' + date.day + '　' + '星期' + weekdayStr[ date.weekday ] });
+
     var _this = this;
     _this.setData( { loading: true });
     requests.getNewsLatest(( data ) => {
       data=utils.correctData(data);
       console.log( data );
+    //console.log( data.stories );
       _this.setData( {
         sliderData: data.top_stories,
         pageData: data.stories
@@ -104,6 +125,7 @@ Page( {
       pageData = _this.data.pageData;
       pageData.push( { type: '3', title: ( [ y, m, d ].join( '.' ) + '  星期' + weekdayStr[ date.getDay() ] ) });
       pageData = pageData.concat( data.stories );
+
       _this.setData( { currentDate: date, pageData: pageData });
     }, null, () => {
       _this.setData( { loadingMore: false });
@@ -138,13 +160,84 @@ Page( {
       url: '../setting/setting'
     });
   },
-  toThemePage: function( e ) {
-    var themeId = e.currentTarget.dataset.id;
-    console.log( 'themeId', themeId );
-    wx.navigateTo( {
-      url: '../theme/theme?themeId=' + themeId
+  //toCollectPage: function() {
+  //  wx.redirectTo( {
+  //    url: '../collect/collect'
+  //  });
+  //},
+
+  toHomePage: function( e ) {
+    var _this = this;
+    _this.setData( { loading: true,themeId:0 });
+    console.log( 'themeId',  _this.data.themeId );
+    requests.getNewsLatest(( data ) => {
+      data=utils.correctData(data);
+    console.log( data );
+    _this.setData( {
+      sliderData: data.top_stories,
+      pageData: data.stories
+    });
+    slideDown.call( this );
+    _this.setData( { pageShow: 'block' });
+  }, null, () => {
+      _this.setData( { loading: false });
     });
   },
+
+  toThemePage: function( e ) {
+    //themeId = e.currentTarget.dataset.id;
+    //console.log( 'themeId', themeId );
+    var _this = this;
+    _this.setData( { loading: true,themeId:e.currentTarget.dataset.id });
+    console.log( 'themeId',  _this.data.themeId );
+    requests.getThemeStories( _this.data.themeId, ( data ) => {
+      //console.log(data);
+    data.background=data.background.replace("pic1","pic3");
+    data.background=data.background.replace("pic2","pic3");
+    for(var i=0;i<data.editors.length;i++){
+      data.editors[i].avatar=data.editors[i].avatar.replace("pic1","pic3");
+      data.editors[i].avatar=data.editors[i].avatar.replace("pic2","pic3");
+    }
+    data=utils.correctData(data);
+    console.log(data);
+    _this.setData( {
+      pageData: data.stories,
+      background: data.background,
+      description: data.description,
+      editorData: data.editors
+    });
+    slideDown.call( this );
+    //wx.setNavigationBarTitle( { title: data.name }); //设置标题
+  }, null, () => {
+      _this.setData( { loading: false });
+    });
+  },
+
+  toCollectPage: function( ) {
+    var _this = this;
+    _this.setData( { themeId:-1});
+    var pageData = wx.getStorageSync('pageData') || []
+    console.log(pageData);
+    _this.setData({
+      themeId:-1,
+      pageData:pageData
+    })
+    //_this.setData( {
+    //  pageData: data.stories,
+    //  background: data.background,
+    //  description: data.description,
+    //  editorData: data.editors
+    slideDown.call( this );
+    //wx.setNavigationBarTitle( { title: data.name }); //设置标题
+
+  },
+  //toThemePage: function( e ) {
+  //  var themeId = e.currentTarget.dataset.id;
+  //  console.log( 'themeId', themeId );
+  //  wx.navigateTo( {
+  //    url: '../theme/theme?themeId=' + themeId
+  //  });
+  //},
 
   //浮动球点击 侧栏展开
   ballClickEvent: function() {
