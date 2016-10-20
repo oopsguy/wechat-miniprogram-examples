@@ -60,9 +60,12 @@ function parseStory( html, isDecode ) {
   if( questionArr ) {
     for( var i = 0, len = questionArr.length;i < len;i++ ) {
       $story = $( questionArr[ i ] );
+      var mavatar=getArrayContent( getArrayContent( $story.tag( 'div' ).attr( 'class', 'meta' ).match() ).jhe_ma( 'img', 'src' ) );
+      mavatar=mavatar.replace("pic1","pic3");
+      mavatar=mavatar.replace("pic2","pic3");
       stories.push( {
         title: getArrayContent( $story.tag( 'h2' ).attr( 'class', 'question-title' ).match() ),
-        avatar: getArrayContent( getArrayContent( $story.tag( 'div' ).attr( 'class', 'meta' ).match() ).jhe_ma( 'img', 'src' ) ),
+        avatar: mavatar,
         author: getArrayContent( $story.tag( 'span' ).attr( 'class', 'author' ).match() ),
         bio: getArrayContent( $story.tag( 'span' ).attr( 'class', 'bio' ).match() ),
         content: parseStoryContent( $story, isDecode ),
@@ -95,6 +98,8 @@ function parseStoryContent( $story, isDecode ) {
       blockquote = getArrayContent( p.jhe_om( 'blockquote' ) );
 
       if( !img.isEmpty() ) { //获取图片
+        img=img.replace("pic1","pic3");
+        img=img.replace("pic2","pic3");
         content.push( { type: 'img', value: img });
       }
       else if( isOnly( p, strong ) ) { //获取加粗段落<p><strong>...</strong></p>
@@ -190,9 +195,39 @@ function isFunction( val ) {
   return typeof val === 'function';
 }
 
+/**
+ * 修正图片url，将pic1和pic2改为pic4
+ * @param data
+ * @returns {*}
+ */
+function correctData(data){
+  if (("top_stories" in data) ){
+    var top_stories=data.top_stories;
+    for(var i = 0;i < top_stories.length; i++) {
+      top_stories[i].image = top_stories[i].image.replace("pic1", "pic4");
+      top_stories[i].image = top_stories[i].image.replace("pic2", "pic4");
+    }
+    data.top_stories=top_stories;
+  }
+
+  var stories=data.stories;
+  for(var i = 0;i < stories.length; i++) {
+    if (("images" in stories[i]) ){
+      var s=stories[i].images[0];
+      s=s.replace("pic1", "pic4");
+      s=s.replace("pic2", "pic4");
+      stories[i].images[0] =s;
+    }
+  }
+
+  data.stories=stories;
+  return data;
+}
+
 module.exports = {
   formatTime: formatTime,
   getCurrentData: getCurrentData,
   isFunction: isFunction,
-  parseStory: parseStory
+  parseStory: parseStory,
+  correctData:correctData
 }

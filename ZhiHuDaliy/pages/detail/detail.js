@@ -69,6 +69,11 @@ function loadData() {
   //获取日报详情内容
   _this.setData( { loading: true });
   requests.getNewsDetail( id, ( data ) => {
+    if("image" in data){
+    data.image=data.image.replace("pic1","pic3");
+    data.image=data.image.replace("pic2","pic3");
+  }
+    console.log(data);
     data.body = utils.parseStory( data.body, isTheme );
     _this.setData( { news: data, pageShow: 'block' });
     wx.setNavigationBarTitle( { title: data.title }); //设置标题

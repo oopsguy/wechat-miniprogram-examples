@@ -1,4 +1,5 @@
 var requests = require( '../../requests/request.js' );
+var utils = require( '../../utils/util.js' );
 
 Page( {
   data: {
@@ -22,6 +23,14 @@ Page( {
     var _this = this;
     this.setData( { loading: true });
     requests.getThemeStories( _this.data.id, ( data ) => {
+      data.background=data.background.replace("pic1","pic4");
+      data.background=data.background.replace("pic2","pic4");
+      for(var i=0;i<data.editors.length;i++){
+        data.editors[i].avatar=data.editors[i].avatar.replace("pic1","pic3");
+        data.editors[i].avatar=data.editors[i].avatar.replace("pic2","pic3");
+      }
+    data=utils.correctData(data);
+    console.log(data);
       _this.setData( {
         pageData: data.stories,
         background: data.background,

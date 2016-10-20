@@ -33,6 +33,10 @@ page {
     font-size: 30rpx;
     color: #FFF;
 }
+.black-desc{
+    padding: 50rpx;
+    font-weight: bold;
+}
 /*article*/
 .article {
     padding: 40rpx;
@@ -61,6 +65,23 @@ page {
 }
 .article .author-info .author-mark {
     color: #6A6A6A;
+}
+/*.author-mark{*/
+    /*width: 60rpx;*/
+    /*height: 60rpx;*/
+/*}*/
+.author-mark{
+    position:relative;
+    bottom:0px;
+    padding:0px;
+    margin:0px;
+    font-size:10px;
+    height: 60rpx;
+    overflow: hidden; /*自动隐藏文字*/
+    text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+    white-space: nowrap;/*强制不换行*/
+    color:#6699ff;
+    width: 300rpx;
 }
 .article .author-info text {
     display: block;

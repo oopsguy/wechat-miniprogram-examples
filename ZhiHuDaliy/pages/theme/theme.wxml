@@ -1,11 +1,18 @@
 <scroll-view scroll-y="true" style="height:100%;width:100%;display:{{pageShow}}">
-  <swiper class="index-swiper" indicator-dots="false" interval="10000">
-      <swiper-item>
-        <image mode="aspectFill" src="{{background}}" width="100%"/>
+  <!--<swiper class="index-swiper" indicator-dots="false" interval="10000">-->
+      <!--<swiper-item>-->
+        <!--<image mode="aspectFill" src="{{background}}" width="100%"/>-->
+        <!--<view class="mask"></view>-->
+        <!--<view class="desc"><text>{{description}}</text></view>-->
+      <!--</swiper-item>-->
+  <!--</swiper>-->
+    <view class="header-cover">
+        <image mode="aspectFill" src="{{background}}"></image>
         <view class="mask"></view>
-        <view class="desc"><text>{{description}}</text></view>
-      </swiper-item>
-  </swiper>
+        <view class="desc">
+            <text>{{description}}</text>
+        </view>
+    </view>
 
   <view class="editors">
     <text>主编</text>
