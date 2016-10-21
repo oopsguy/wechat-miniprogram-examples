@@ -185,8 +185,6 @@ Page( {
   },
 
   toThemePage: function( e ) {
-    //themeId = e.currentTarget.dataset.id;
-    //console.log( 'themeId', themeId );
     var _this = this;
     _this.setData( { loading: true,themeId:e.currentTarget.dataset.id });
     console.log( 'themeId',  _this.data.themeId );

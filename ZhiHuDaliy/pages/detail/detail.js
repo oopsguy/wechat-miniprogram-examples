@@ -105,6 +105,12 @@ function loadData() {
     data.image=data.image.replace("pic2","pic3");
   }
     console.log(data);
+  //for(var i=0;i<data.body.length;i++){
+  //  for(var j=0;j<data.body[i].content.length;j++){
+  //    data.body[i].content[j].value=utils.transferSign(data.body[i].content[j].value);
+  //    console.log(data.body[i].content[j].value);
+  //  }
+  //}
     data.body = utils.parseStory( data.body, isTheme );
     _this.setData( { news: data, pageShow: 'block' });
     wx.setNavigationBarTitle( { title: data.title }); //设置标题

@@ -103,6 +103,15 @@
   width: 50rpx;
   height: 50rpx;
 }
+.home-icon {
+  position: absolute;
+  top: 25rpx;
+  left: 40rpx;
+}
+.home-text {
+  position: absolute;
+  left: 100rpx;
+}
 .slide-menu .home {
   color: #019DD6
 }

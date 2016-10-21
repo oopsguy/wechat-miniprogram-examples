@@ -4,7 +4,6 @@
     "pages/index/index",
     "pages/comment/comment",
     "pages/detail/detail",
-    "pages/theme/theme",
     "pages/setting/setting"
   ],
   "window": {

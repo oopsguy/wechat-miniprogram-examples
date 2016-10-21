@@ -1,4 +1,4 @@
-<view class="float-action" bindtap="ballClickEvent" style="opacity: {{ballOpacity}};bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent"> 
+<view class="float-action" bindtap="ballClickEvent" style="opacity: {{ballOpacity}};bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent">
 </view>
 
 <view class="slide-mask" style="display:{{maskDisplay}}" bindtap="slideCloseEvent"></view>
@@ -22,9 +22,11 @@
       </view>
     </view>
     <view class="menu-item home" bindtap="toHomePage" wx:if="{{themeId==0}}" style="background:rgba(0,0,0,0.10)">
-      <text>首页</text>
+      <image src="../../images/home.png" class="home-icon"></image>
+      <text class="home-text">首页</text>
     </view>
     <view class="menu-item home" bindtap="toHomePage" wx:else>
+      <image src="../../images/home.png" class="home-icon"></image>
       <text>首页</text>
     </view>
     <!--<view class="menu-item home" bindtap="toHomePage" wx:if=else>-->
