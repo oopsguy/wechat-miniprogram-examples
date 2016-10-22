@@ -21,6 +21,8 @@ Page( {
     var _this = this;
     var size = this.data.screenWidth + '*' + this.data.screenHeight;
     requests.getSplashCover( size, ( data ) => {
+      data.img=data.img.replace("pic1","pic4");
+      data.img=data.img.replace("pic2","pic4");
       _this.setData( { splash: data });
     }, null, () => {
       toIndexPage.call(_this);

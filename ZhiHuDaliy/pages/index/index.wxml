@@ -27,7 +27,7 @@
     </view>
     <view class="menu-item home" bindtap="toHomePage" wx:else>
       <image src="../../images/home.png" class="home-icon"></image>
-      <text>首页</text>
+      <text class="home-text">首页</text>
     </view>
     <!--<view class="menu-item home" bindtap="toHomePage" wx:if=else>-->
       <!--<text>首页</text>-->
