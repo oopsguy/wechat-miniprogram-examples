@@ -2,6 +2,12 @@
 
 微信小程序最近很火热，虽然官方还在内侧，但是笔者还是经常看得到很多微信小程序相关的文章，既然它这么火热，自己也想学习并做出点东西。笔者刚毕业不久，参加工作也只有3个月，实际的开发能力并不能与大牛相比，所做的DEMO技术含量比较低，自己的目的在于记录下每次学习的过程和分享每一次学习之后的成果。由于工作比较忙，只能抽周末的时间来完善DEMO，计划中的DEMO有几个，以后会慢慢更新。
 
+> `知乎日报`案例上传之后，有比较热心的网络贡献自己的代码修复了很多bug，非常感谢
+
+- [@jkgeekJack](https://github.com/jkgeekJack)  
+  美化部分UI，增加收藏功能，把主页、主题和收藏页改为单页模式，修复部分图片不能显示的问题，部分代码重构，内容转义字符显示问题修复。
+
+
 ## 案列说明
 
 [点击转至案例开发随笔](https://github.com/oopsguy/WechatSmallApps/tree/pages_doc)
@@ -12,7 +18,7 @@
 
 很简单的一个小例子，使用了两个豆瓣图书的api，搜索图书和获取图书详情接口。这是第一个自己的第一个微信小应用。
 
-![DouBanBookApp效果图](http://oeiyvmnx5.bkt.clouddn.com/DouBanBookApp.gif)
+![DouBanBookApp效果图](http://oeiyvmnx5.bkt.clouddn.com/doubanbook_overview.jpg)
 
 ### ZhiHuDaliy 知乎日报
 
