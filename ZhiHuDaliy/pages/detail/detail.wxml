@@ -83,7 +83,8 @@
         <view class="inner">
             <view class="item" bindtap="showModalEvent"><image src="../../images/share.png" /></view>
             <view class="item" bindtap="reloadEvent"><image src="../../images/refresh.png" /></view>
-            <view class="item"><image src="../../images/favorite.png" /></view>
+            <view class="item" bindtap="collectOrNot" wx:if="{{isCollect}}"><image src="../../images/star_yellow.png" /></view>
+            <view class="item" bindtap="collectOrNot" wx:else><image src="../../images/star.png" /></view>
             <view class="item" data-id="{{id}}" bindtap="toCommentPage"><image src="../../images/insert_comment.png" />
                 <view class="tip"></view>
             </view>

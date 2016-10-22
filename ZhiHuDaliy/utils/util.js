@@ -88,7 +88,7 @@ function parseStoryContent( $story, isDecode ) {
   var p, strong, img, blockquote, em;
   if( ps ) {
     for( var i = 0, len = ps.length;i < len;i++ ) {
-      p = ps[ i ]; //获取<p>的内容
+      p = transferSign(ps[ i ]); //获取<p>的内容 ,并将特殊符号转义
       if( !p || p.isEmpty() )
         continue;
 
@@ -224,10 +224,26 @@ function correctData(data){
   return data;
 }
 
+/**
+ * 将转义字符转为实体
+ * @param data
+ * @returns {*}
+ */
+function transferSign(data){
+  data=data.replace(/&ndash;/g,"–");
+  data=data.replace(/&mdash;/g,"—");
+  data=data.replace(/&hellip;/g,"…");
+  data=data.replace(/&bull;/g,"•");
+  data=data.replace(/&rsquo;/g,"’");
+  data=data.replace(/&ndash;/g,"–");
+  return data;
+}
+
 module.exports = {
   formatTime: formatTime,
   getCurrentData: getCurrentData,
   isFunction: isFunction,
   parseStory: parseStory,
-  correctData:correctData
+  correctData:correctData,
+  transferSign:transferSign
 }

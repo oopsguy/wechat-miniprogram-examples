@@ -10,13 +10,21 @@ Page( {
     modalHidden: true,
     extraInfo: {},
     modalMsgHidden: true,
-    pageShow: 'none'
+    pageShow: 'none',
+    isCollect:false//是否被收藏
   },
 
   //获取列表残过来的参数 id：日报id， theme：是否是主题日报内容（因为主题日报的内容有些需要单独解析）
   onLoad: function( options ) {
     var id = options.id;
     var isTheme = options[ 'theme' ];
+    var pageData = wx.getStorageSync('pageData') || []
+    for(var i=0;i<pageData.length;i++){
+      if (pageData[i].id==id){
+        this.setData( { isCollect: true });
+        break;
+      }
+    }
     this.setData( { id: id, isTheme: isTheme });
   },
 
@@ -24,7 +32,31 @@ Page( {
   onReady: function() {
     loadData.call( this );
   },
-
+  collectOrNot: function() {
+    var pageData = wx.getStorageSync('pageData') || []
+    console.log(pageData);
+    if (this.data.isCollect){
+      for(var i=0;i<pageData.length;i++){
+        if (pageData[i].id==this.data.id){
+          pageData.splice(i,1);
+          this.setData( { isCollect: false });
+          break;
+        }
+      }
+    }else {
+      var images=new Array(this.data.news.image);
+      //var item ={id:e.currentTarget.dataset.id,title:this.data.title,images:images};
+      var item ={id:this.data.id,title:this.data.news.title,images:images};
+      console.log(item);
+      pageData.unshift(item);
+      this.setData( { isCollect: true });
+    }
+    try {
+      wx.setStorageSync('pageData',pageData);
+    } catch (e) {
+    }
+    console.log(pageData);
+  },
   //跳转到评论页面
   toCommentPage: function( e ) {
     var storyId = e.currentTarget.dataset.id;
@@ -46,7 +78,6 @@ Page( {
       });
     }
   },
-
   //重新加载数据
   reloadEvent: function() {
     loadData.call( this );
@@ -74,6 +105,12 @@ function loadData() {
     data.image=data.image.replace("pic2","pic3");
   }
     console.log(data);
+  //for(var i=0;i<data.body.length;i++){
+  //  for(var j=0;j<data.body[i].content.length;j++){
+  //    data.body[i].content[j].value=utils.transferSign(data.body[i].content[j].value);
+  //    console.log(data.body[i].content[j].value);
+  //  }
+  //}
     data.body = utils.parseStory( data.body, isTheme );
     _this.setData( { news: data, pageShow: 'block' });
     wx.setNavigationBarTitle( { title: data.title }); //设置标题
