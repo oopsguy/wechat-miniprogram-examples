@@ -190,11 +190,11 @@ Page( {
     console.log( 'themeId',  _this.data.themeId );
     requests.getThemeStories( _this.data.themeId, ( data ) => {
       //console.log(data);
-    data.background=data.background.replace("pic1","pic3");
-    data.background=data.background.replace("pic2","pic3");
+    data.background=data.background.replace("pic1.","pic3.");
+    data.background=data.background.replace("pic2.","pic3.");
     for(var i=0;i<data.editors.length;i++){
-      data.editors[i].avatar=data.editors[i].avatar.replace("pic1","pic3");
-      data.editors[i].avatar=data.editors[i].avatar.replace("pic2","pic3");
+      data.editors[i].avatar=data.editors[i].avatar.replace("pic1.","pic3.");
+      data.editors[i].avatar=data.editors[i].avatar.replace("pic2.","pic3.");
     }
     data=utils.correctData(data);
     console.log(data);

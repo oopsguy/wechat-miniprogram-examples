@@ -1,6 +1,6 @@
 <view style="display:{{pageShow}}">
     <view class="header-cover" wx:if="{{news.image}}">
-        <image mode="aspectFill" src="{{news.image}}"></image>
+        <image mode="aspectFill" style="height:100%" src="{{news.image}}"></image>
         <view class="mask"></view>
         <view class="desc">
             <text>{{news.title}}</text>

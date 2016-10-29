@@ -17,7 +17,7 @@ page {
     width: 100%;
     background: rgba(0, 0, 0, .3);
 }
-.header-cover .desc {
+.header-cover .desc { 
     position: absolute;
     left: 0;
     bottom: 0;
@@ -94,6 +94,9 @@ page {
     color: #6A6A6A;
     line-height: 60rpx;
     margin-bottom: 40rpx;
+    text-align: justify;
+    overflow: hidden;
+    word-wrap:  break-word; 
 }
 .article .content .em {
     font-style: italic;

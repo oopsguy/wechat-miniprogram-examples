@@ -33,7 +33,7 @@
       <!--<text>首页</text>-->
     <!--</view>-->
     <view class="slide-inner">
-      <block wx:for="{{themeData}}">
+      <block wx:key="id" wx:for="{{themeData}}">
         <view class="menu-item" data-id="{{item.id}}" wx:if="{{themeId==item.id}}" style="background:rgba(0,0,0,0.10)" bindtap="toThemePage">
           <text >{{item.name}}</text>
           <image src="../../images/plus.png"></image>
@@ -48,12 +48,13 @@
 </view>
 
 <scroll-view wx:if="{{themeId==0}}" scroll-y="true" style="height:100%;width:100%;display:{{pageShow}}" bindscrolltolower="loadingMoreEvent">
-  <swiper class="index-swiper" indicator-dots="true"  interval="10000">
-    <block wx:for="{{sliderData}}">
+  <swiper class="index-swiper" indicator-dots="true"  interval="10000" autoplay="true">
+    <block wx:key="id" wx:for="{{sliderData}}">
       <swiper-item data-id="{{item.id}}" bindtap="toDetailPage">
         <image mode="aspectFill" src="{{item.image}}" style="width:100%" />
-        <view class="mask"></view>
-        <view class="desc"><text>{{item.title}}</text></view>
+        <!--由于开发工具升级导致这样的写法出现问题（swiper组件错位），暂时注释解决-->
+        <!--<view class="mask"></view>-->
+        <!--<view class="desc"><text>{{item.title}}</text></view>-->
       </swiper-item>
     </block>
   </swiper>
@@ -63,7 +64,7 @@
     <view class="date"><text>{{currentDateStr}}</text></view>
   </view>
   <view class="common-list">
-    <block wx:for="{{pageData}}">
+    <block wx:key="id" wx:for="{{pageData}}">
       <view class="list-item {{item.images[0] ? 'has-img': ''}}" wx:if="{{item.type != 3}}" data-id="{{item.id}}" bindtap="toDetailPage">
         <view class="content">
           <text>{{item.title}}</text>
@@ -83,11 +84,11 @@
 
 <scroll-view wx:else scroll-y="true" style="height:100%;width:100%;display:{{pageShow}}">
   <view wx:if="{{themeId!=-1}}"class="header-cover">
-    <image mode="aspectFill" src="{{background}}"></image>
+    <image mode="aspectFill" style="height:100%" src="{{background}}"></image>
     <view class="mask"></view>
     <view class="desc">
       <text>{{description}}</text>
-    </view>
+    </view>-->
   </view>
 
   <view class="editors" wx:if="{{themeId!=-1}}">
@@ -96,7 +97,7 @@
   </view>
 
   <view class="common-list">
-    <block wx:for="{{pageData}}">
+    <block wx:key="id" wx:for="{{pageData}}">
       <view class="list-item {{item.images[0] ? 'has-img': ''}}" data-id="{{item.id}}"  bindtap="toDetailPage">
         <view class="content">
           <text>{{item.title}}</text>

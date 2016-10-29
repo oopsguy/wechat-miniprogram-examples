@@ -7,7 +7,6 @@ page {
 swiper.index-swiper {
   position: relative;
   height: 450rpx;
-  overflow: hidden;
 }
 swiper .mask {
   position: absolute;
