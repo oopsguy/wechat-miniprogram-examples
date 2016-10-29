@@ -7,7 +7,6 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#42BD56",
     "navigationBarTitleText": "豆瓣图书",
-    "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": true
+    "navigationBarTextStyle": "white"
   }
 }

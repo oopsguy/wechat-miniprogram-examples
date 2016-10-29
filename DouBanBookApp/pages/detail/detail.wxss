@@ -35,7 +35,7 @@ page {
 }
 .book-title {
     font-weight: bold;
-    font-size: 50rpx;
+    font-size: 40rpx;
 }
 .other-meta {
     padding-top: 10rpx;
@@ -57,13 +57,17 @@ page {
 }
 
 .book-intro {
+    margin-bottom: 40rpx;
     padding: 20rpx;
-    font-size: 40rpx;
+    background: #FAFAFA;
 }
 .book-intro .intro-header {
-    color: #888
+    color: #888;
+    font-weight: bold;
+    padding: 40rpx 0;
 }
 .book-intro .intro-content {
     font-size: 35rpx;
-    line-height: 45rpx;
+    line-height: 2;
+    text-align: justify
 }
