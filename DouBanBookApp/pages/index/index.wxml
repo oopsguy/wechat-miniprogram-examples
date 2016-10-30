@@ -5,8 +5,8 @@
 <scroll-view scroll-y="true" style="height:{{scrollHeight}}px"
   bindscrolltolower="scrollLowerEvent">
 
-    <view style="text-align:center;padding-top:50rpx;" wx:if="{{!loadingMore && totalRecord == 0 && !isInit}}">
-      <icon type="cancel" color="red" size="40" />
+    <view class="logo" wx:if="{{!loadingMore && totalRecord == 0 && !isInit}}">
+      <icon type="cancel" color="#B0AAAA" size="50" />
       <view><text>没有找到相关图书</text></view>
     </view>
 

@@ -22,7 +22,11 @@
 
 很简单的一个小例子，使用了两个豆瓣图书的api，搜索图书和获取图书详情接口。这是第一个自己的第一个微信小应用。
 
-![DouBanBookApp效果图](http://oeiyvmnx5.bkt.clouddn.com/doubanbook_overview.jpg)
+![DouBanBookApp首页](http://oeiyvmnx5.bkt.clouddn.com/DouBanBookAppNewIndex.jpg)
+
+![DouBanBookApp列表页](http://oeiyvmnx5.bkt.clouddn.com/DouBanBookAppList.jpg)
+
+![DouBanBookApp详细页](http://oeiyvmnx5.bkt.clouddn.com/DouBanAppNewsDetail.jpg)
 
 ### ZhiHuDaliy 知乎日报
 

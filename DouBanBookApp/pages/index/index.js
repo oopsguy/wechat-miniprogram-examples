@@ -37,8 +37,14 @@ Page({
 
   //搜索按钮点击事件
   searchClickEvent: function (e) {
-    if (!this.data.searchKey)
+    if (!this.data.searchKey) {
+      wx.showModal({
+        title: '提示',
+        content: '请输入搜索内容',
+        showCancel: false
+      });
       return;
+    }
     this.setData({ pageIndex: 0, pageData: [] });
     requestData.call(this);
   },
