@@ -22,7 +22,7 @@
 
     <view class="common-list" wx:if="{{totalRecord > 0}}">
 
-      <block wx:for="{{pageData}}" wx:key="id">
+      <block wx:for="{{pageData}}">
         <view class="list-item" data-bid="{{item.id}}" bindtap="toDetailPage">
           <view class="index-list-item">
             <view class="cover">

@@ -38,11 +38,6 @@ Page({
   //搜索按钮点击事件
   searchClickEvent: function (e) {
     if (!this.data.searchKey) {
-      wx.showModal({
-        title: '提示',
-        content: '请输入搜索内容',
-        showCancel: false
-      });
       return;
     }
     this.setData({ pageIndex: 0, pageData: [] });
@@ -51,6 +46,8 @@ Page({
 
   //下拉请求数据
   scrollLowerEvent: function (e) {
+    if (this.data.loadingMore)
+      return;
     requestData.call(this);
   },
 
@@ -74,7 +71,7 @@ function requestData() {
 
   this.setData({ loadingMore: true, isInit: false });
   updateRefreshBall.call(this);
-
+  console.log(start)
   requests.requestSearchBook({ q: q, start: start }, (data) => {
     if (data.total == 0) {
       //没有记录
