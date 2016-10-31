@@ -2,6 +2,10 @@
 
 微信小程序最近很火热，虽然官方还在内侧，但是笔者还是经常看得到很多微信小程序相关的文章，既然它这么火热，自己也想学习并做出点东西。笔者刚毕业不久，参加工作也只有3个月，实际的开发能力并不能与大牛相比，所做的DEMO技术含量比较低，自己的目的在于记录下每次学习的过程和分享每一次学习之后的成果。由于工作比较忙，只能抽周末的时间来完善DEMO，计划中的DEMO有几个，以后会慢慢更新。
 
+## 更新
+
+- [20161031] 小程序更新到最新版本 [0.10.102800](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html)，删除之前兼容新注释，`知乎日报`首页的轮播图恢复正常，新增案例计划，初步开发，暂且命名为`事项助手`，其主要功能为日历全月份天数动态展示。
+
 ## 环境说明
 
 由于官方不定期升级IDE，小程序的部分功能被修改和移除，导致之前的项目不能正常运行。现在的代码以最新版IDE运行环境为准，即0.10.102800版本，可[点击下载](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html)，虽然修改了代码以适应最新版本的开发环境，但是之前的有些布局和做法已经不再受到官方的支持，所以实际运行效果与效果图中的展示可能存在差异。
@@ -37,8 +41,6 @@
 ![首页](http://oeiyvmnx5.bkt.clouddn.com/zhihuribao_index.png)
 
 ![侧栏菜单](http://oeiyvmnx5.bkt.clouddn.com/zhihuribao_slide.png)
-
-![详细页面1](http://oeiyvmnx5.bkt.clouddn.com/zhihuribao_detail.png)
 
 ![详细页面2](http://oeiyvmnx5.bkt.clouddn.com/zhihuribao_detail2.png)
 

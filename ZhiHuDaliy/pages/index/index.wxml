@@ -52,9 +52,8 @@
     <block wx:key="id" wx:for="{{sliderData}}">
       <swiper-item data-id="{{item.id}}" bindtap="toDetailPage">
         <image mode="aspectFill" src="{{item.image}}" style="width:100%" />
-        <!--由于开发工具升级导致这样的写法出现问题（swiper组件错位），暂时注释解决-->
-        <!--<view class="mask"></view>-->
-        <!--<view class="desc"><text>{{item.title}}</text></view>-->
+        <view class="mask"></view>
+        <view class="desc"><text>{{item.title}}</text></view>
       </swiper-item>
     </block>
   </swiper>
