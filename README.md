@@ -16,7 +16,9 @@
 
 ## 案列说明
 
-[点击转至案例开发随笔](https://github.com/oopsguy/WechatSmallApps/tree/pages_doc)
+[Oopsguy的博客](http://oopsguy.com)
+
+[案例随笔分支](https://github.com/oopsguy/WechatSmallApps/tree/pages_doc)
 
 ## 已完成DEMO
 
@@ -50,10 +52,8 @@
 
 ![设置页面](http://oeiyvmnx5.bkt.clouddn.com/zhihuribao_setting.png)
 
-## 正在开发中
+## 代码仓库
 
-待思考...
+[https://github.com/oopsguy/WechatSmallApps](https://github.com/oopsguy/WechatSmallApps)
 
-### [https://github.com/oopsguy/WechatSmallApps](https://github.com/oopsguy/WechatSmallApps)
-
-### [http://git.oschina.net/oopsguy/WechatSmallApps](http://git.oschina.net/oopsguy/WechatSmallApps)
+[http://git.oschina.net/oopsguy/WechatSmallApps](http://git.oschina.net/oopsguy/WechatSmallApps)
