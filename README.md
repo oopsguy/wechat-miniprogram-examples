@@ -20,17 +20,13 @@
 
 [案例随笔分支](https://github.com/oopsguy/WechatSmallApps/tree/pages_doc)
 
-## 已完成DEMO
+## 案例
 
-### DoubanBookApp 豆瓣图书
+### MatterAssistant 事项助手(ES6教程附带例子)
 
-很简单的一个小例子，使用了两个豆瓣图书的api，搜索图书和获取图书详情接口。这是第一个自己的第一个微信小应用。
+介绍小程序的ES6开发方式，基础到写法，最后给出[事项助手](http://oopsguy.com)作为演示例子，事项助手的功能比较简单，附带日历组件和简单的事项信息存储功能。
 
-![DouBanBookApp首页](http://oeiyvmnx5.bkt.clouddn.com/DouBanBookAppNewIndex.jpg)
-
-![DouBanBookApp列表页](http://oeiyvmnx5.bkt.clouddn.com/DouBanBookAppList.jpg)
-
-![DouBanBookApp详细页](http://oeiyvmnx5.bkt.clouddn.com/DouBanAppNewsDetail.jpg)
+![事项助手首页](http://og808p12b.bkt.clouddn.com/matter-assistant-index.png)
 
 ### ZhiHuDaliy 知乎日报
 
@@ -51,6 +47,16 @@
 ![主题日报](http://oeiyvmnx5.bkt.clouddn.com/zhihuribao_theme.png)
 
 ![设置页面](http://oeiyvmnx5.bkt.clouddn.com/zhihuribao_setting.png)
+
+### DoubanBookApp 豆瓣图书
+
+很简单的一个小例子，使用了两个豆瓣图书的api，搜索图书和获取图书详情接口。这是第一个自己的第一个微信小应用。
+
+![DouBanBookApp首页](http://oeiyvmnx5.bkt.clouddn.com/DouBanBookAppNewIndex.jpg)
+
+![DouBanBookApp列表页](http://oeiyvmnx5.bkt.clouddn.com/DouBanBookAppList.jpg)
+
+![DouBanBookApp详细页](http://oeiyvmnx5.bkt.clouddn.com/DouBanAppNewsDetail.jpg)
 
 ## 代码仓库
 
