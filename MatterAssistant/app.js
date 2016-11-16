@@ -7,10 +7,10 @@ App({
     if (that.globalData.userInfo) {
       cb(that.globalData.userInfo);
     } else {
-      promiseHandle(wx.login).then(() => promiseHandle(wx.getUserInfo)).then((res) => {
+      promiseHandle(wx.login).then(() => promiseHandle(wx.getUserInfo)).then(res => {
         that.globalData.userInfo = res.userInfo;
         cb(that.globalData.userInfo);
-      }).catch((err) => {
+      }).catch(err => {
         log(err);
       });
     }
@@ -22,6 +22,7 @@ App({
 
   //自定义配置
   settings: {
-    debug: true //是否调试模式
+    debug: true, //是否调试模式
+    moreLink: 'http://github.com/oopsguy'
   }
 });  

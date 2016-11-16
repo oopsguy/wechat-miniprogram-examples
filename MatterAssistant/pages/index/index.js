@@ -123,7 +123,6 @@ Page({
   //事项内容多行文本域变化事件
   todoTextAreaChangeEvent(e) {
     const {value} = e.detail;
-    console.log('textarea', value);
     this.setData({ todoTextAreaValue: value });
   },
 
@@ -137,7 +136,6 @@ Page({
   saveDataEvent() {
     const {todoInputValue, todoTextAreaValue, levelSelectedValue} = this.data;
     const {year, month, date} = this.data.data.selected;
-    console.log(todoInputValue, todoTextAreaValue);
     if (todoInputValue !== '') {
       let promise = new DataService({
         title: todoInputValue,
@@ -151,7 +149,7 @@ Page({
         //清空表单
         this.setData({
           todoTextAreaValue: '',
-          levelSelectedValue: '',
+          levelSelectedValue: LEVEL.normal,
           todoInputValue: ''
         });
         loadItemListData.call(this);
@@ -172,7 +170,7 @@ Page({
       content: '确定要删除选定的事项？',
       success: (res) => {
         if (res.confirm) {
-          DataService.deleteRange(this.data.editItemList).then(() => {
+          DataService.deleteRange(_this.data.editItemList).then(() => {
             loadItemListData.call(_this);
           });
           _this.setData({
@@ -280,7 +278,6 @@ function loadItemListData() {
   const {year, month, date} = this.data.data.selected;
   let _this = this;
   DataService.findByDate(new Date(Date.parse([year, month, date].join('-')))).then((data) => {
-    console.log(data);
     _this.setData({ itemList: data });
   });
 

@@ -38,20 +38,16 @@ class DataSerivce {
      * 获取所有事项数据
      */
     static findAll() {
-        return DataRepository.findAllData().then((data) => {
-            return data.data ? data.data : [];
-        });
+        return DataRepository.findAllData()
+            .then(data => data.data ? data.data : []);
     }
 
     /**
      * 通过id获取事项
      */
     static findById(id) {
-        return DataRepository.findBy((item) => {
-            return item['_id'] == id;
-        }).then((items) => {
-            return (items && items.length > 0) ? items[0] : null;
-        }); 
+        return DataRepository.findBy(item => item['_id'] == id)
+            .then(items => (items && items.length > 0) ? items[0] : null); 
     }
 
     /**
@@ -65,7 +61,7 @@ class DataSerivce {
      * 批量删除数据
      * @param {Array} ids 事项Id集合
      */
-    static deleteRange(...ids) {
+    static deleteRange(ids) {
         return DataRepository.removeRange(ids);
     }
 
@@ -76,11 +72,11 @@ class DataSerivce {
      */
     static findByDate(date) {
         if (!date) return [];
-        return DataRepository.findBy((item) => {
+        return DataRepository.findBy(item => {
             return item && item['date'] == date.getDate() &&
                 item['month'] == date.getMonth() &&
                 item['year'] == date.getFullYear();
-        }).then((data) => data);
+        }).then(data => data);
     }
 
     _checkProps() {

@@ -11,7 +11,7 @@ class DataRepository {
     static addData(data) {
         if (!data) return false;
         data['_id'] = guid();
-        return DataRepository.findAllData().then((allData) => {
+        return DataRepository.findAllData().then(allData => {
             allData = allData || [];
             allData.unshift(data);
             wx.setStorage({key:Config.ITEMS_SAVE_KEY, data: allData});
@@ -24,7 +24,7 @@ class DataRepository {
      * @returns {Promise}
      */
     static removeData(id) {
-        return DataRepository.findAllData().then((data) => {
+        return DataRepository.findAllData().then(data => {
             if (!data) return;
             for (let idx = 0, len = data.length; idx < len; idx++) {
                 if (data[idx] && data[idx]['_id'] == id) {
@@ -43,7 +43,7 @@ class DataRepository {
      */
     static removeRange(range) {
         if (!range) return;
-        return DataRepository.findAllData().then((data) => {
+        return DataRepository.findAllData().then(data => {
             if (!data) return;
             let indexs = [];
             for (let rIdx = 0, rLen = range.length; rIdx < rLen; rIdx++) {
@@ -54,8 +54,11 @@ class DataRepository {
                     }
                 }
             }
-            indexs.forEach(function (item) {
-                data.splice(item, 1);
+            
+            let tmpIdx = 0;
+            indexs.forEach(item => {
+                data.splice(item - tmpIdx, 1);
+                tmpIdx++;
             });
             wx.setStorage({key: Config.ITEMS_SAVE_KEY, data: data});
         });
@@ -69,7 +72,7 @@ class DataRepository {
      */
     static saveData(data) {
         if (!data || !data['_id']) return false;
-        return DataRepository.findAllData().then((allData) => {
+        return DataRepository.findAllData().then(allData => {
             if (!allData) return false;
             for (let idx = 0, len = allData.length; i < len; i++) {
                 if (allData[i] && allData[i]['_id'] == data['_id']) {
@@ -87,9 +90,7 @@ class DataRepository {
      * @returns {Promise} Promise实例
      */
     static findAllData() {
-        return promiseHandle(wx.getStorage, {key: Config.ITEMS_SAVE_KEY}).then((res) => {
-            return res.data ? res.data : [];
-        }).catch((ex) => {
+        return promiseHandle(wx.getStorage, {key: Config.ITEMS_SAVE_KEY}).then(res => res.data ? res.data : []).catch(ex => {
             log(ex);
         });
     }
@@ -100,11 +101,9 @@ class DataRepository {
      * @returns {Promise} Promise实例
      */
     static findBy(predicate) {
-        return DataRepository.findAllData().then((data) => {
+        return DataRepository.findAllData().then(data => {
             if (data) {
-                data = data.filter((item) => {
-                    return predicate(item);
-                });
+                data = data.filter(item => predicate(item));
             }
             return data;
         });
