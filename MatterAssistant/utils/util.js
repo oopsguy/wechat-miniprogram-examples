@@ -1,3 +1,5 @@
+import Promise from 'bluebird';
+
 function formatTime(date) {
   let year = date.getFullYear()
   let month = date.getMonth() + 1
