@@ -4,7 +4,7 @@
 
 ## 更新
 
-- [2016-11-17] 由于官方IDE更新到了`0.11.112301`版本，移除了对`Promise`的支持，造成`事项助手`不能正常运行，解决此问题，在项目中引入第三方兼容库[Bluebird](https://github.com/petkaantonov/bluebird)支持`Promise`，代码已经整合到项目代码中。
+- [2016-11-23] 由于官方IDE更新到了`0.11.112301`版本，移除了对`Promise`的支持，造成`事项助手`不能正常运行，解决此问题，在项目中引入第三方兼容库[Bluebird](https://github.com/petkaantonov/bluebird)支持`Promise`，代码已经整合到项目代码中。
 
 - [2016-11-16] 更新案例`事项助手`，配合[微信小程序之ES6与事项助手](http://oopsguy.com/2016/11/12/wechat-small-program-es6-matter-assistant/)教程开发，主要是介绍小程序ES6开发方法。
 
