@@ -74,9 +74,9 @@ class DataRepository {
         if (!data || !data['_id']) return false;
         return DataRepository.findAllData().then(allData => {
             if (!allData) return false;
-            for (let idx = 0, len = allData.length; i < len; i++) {
-                if (allData[i] && allData[i]['_id'] == data['_id']) {
-                    allData[i] = data;
+            for (let idx = 0, len = allData.length; i < len; idx++) {
+                if (allData[idx] && allData[idx]['_id'] == data['_id']) {
+                    allData[idx] = data;
                     break;
                 }
             }
