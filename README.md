@@ -5,6 +5,10 @@
 ## 更新
 - [2017-02-12] 修改知乎日报案例的图片路径，修复获取知乎图片失败的问题，启动界面的图片获取接口被限制，暂无办法解决！
 
+- [2016-11-23] 由于官方IDE更新到了`0.11.112301`版本，移除了对`Promise`的支持，造成`事项助手`不能正常运行，解决此问题，在项目中引入第三方兼容库[Bluebird](https://github.com/petkaantonov/bluebird)支持`Promise`，代码已经整合到项目代码中。
+
+- [2016-11-16] 更新案例`事项助手`，配合[微信小程序之ES6与事项助手](http://oopsguy.com/2016/11/12/wechat-small-program-es6-matter-assistant/)教程开发，主要是介绍小程序ES6开发方法。
+
 - [2016-10-31] 小程序更新到最新版本 [0.10.102800](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html)，删除之前兼容新注释，`知乎日报`首页的轮播图恢复正常，新增案例计划，初步开发，暂且命名为`事项助手`，其主要功能为日历全月份天数动态展示。
 
 - [2016-10-29] 由于官方不定期升级IDE，小程序的部分功能被修改和移除，导致之前的项目不能正常运行。现在的代码以最新版IDE运行环境为准，即0.10.102800版本，可[点击下载](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html)，虽然修改了代码以适应最新版本的开发环境，但是之前的有些布局和做法已经不再受到官方的支持，所以实际运行效果与效果图中的展示可能存在差异。
@@ -17,19 +21,17 @@
 
 ## 案列说明
 
-[点击转至案例开发随笔](https://github.com/oopsguy/WechatSmallApps/tree/pages_doc)
+[Oopsguy的博客](http://oopsguy.com)
 
-## 已完成DEMO
+[案例随笔分支](https://github.com/oopsguy/WechatSmallApps/tree/pages_doc)
 
-### DoubanBookApp 豆瓣图书
+## 案例
 
-很简单的一个小例子，使用了两个豆瓣图书的api，搜索图书和获取图书详情接口。这是第一个自己的第一个微信小应用。
+### MatterAssistant 事项助手(ES6教程附带例子)
 
-![DouBanBookApp首页](http://oeiyvmnx5.bkt.clouddn.com/DouBanBookAppNewIndex.jpg)
+介绍小程序的ES6开发方式，基础到写法，最后给出[事项助手](http://oopsguy.com)作为演示例子，事项助手的功能比较简单，附带日历组件和简单的事项信息存储功能。
 
-![DouBanBookApp列表页](http://oeiyvmnx5.bkt.clouddn.com/DouBanBookAppList.jpg)
-
-![DouBanBookApp详细页](http://oeiyvmnx5.bkt.clouddn.com/DouBanAppNewsDetail.jpg)
+![事项助手首页](http://og808p12b.bkt.clouddn.com/matter-assistant-index.png)
 
 ### ZhiHuDaliy 知乎日报
 
@@ -51,10 +53,18 @@
 
 ![设置页面](http://oeiyvmnx5.bkt.clouddn.com/zhihuribao_setting.png)
 
-## 正在开发中
+### DoubanBookApp 豆瓣图书
 
-待思考...
+很简单的一个小例子，使用了两个豆瓣图书的api，搜索图书和获取图书详情接口。这是第一个自己的第一个微信小应用。
 
-### [https://github.com/oopsguy/WechatSmallApps](https://github.com/oopsguy/WechatSmallApps)
+![DouBanBookApp首页](http://oeiyvmnx5.bkt.clouddn.com/DouBanBookAppNewIndex.jpg)
 
-### [http://git.oschina.net/oopsguy/WechatSmallApps](http://git.oschina.net/oopsguy/WechatSmallApps)
+![DouBanBookApp列表页](http://oeiyvmnx5.bkt.clouddn.com/DouBanBookAppList.jpg)
+
+![DouBanBookApp详细页](http://oeiyvmnx5.bkt.clouddn.com/DouBanAppNewsDetail.jpg)
+
+## 代码仓库
+
+[https://github.com/oopsguy/WechatSmallApps](https://github.com/oopsguy/WechatSmallApps)
+
+[http://git.oschina.net/oopsguy/WechatSmallApps](http://git.oschina.net/oopsguy/WechatSmallApps)
