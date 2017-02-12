@@ -1,6 +1,7 @@
-var requests = require( '../../requests/request.js' );
+var requests = require('../../requests/request.js');
+var utils = require('../../utils/util.js');
 
-Page( {
+Page({
   data: {
     storyId: null,
     loading: false,
@@ -14,53 +15,52 @@ Page( {
   },
 
   //获取传递过来的日报id 和 评论数目
-  onLoad: function( options ) {
-    var storyId = options[ 'id' ];
-    var longCommentCount = parseInt( options[ 'lcount' ] );
-    var shortCommentCount = parseInt( options[ 'scount' ] );
-    this.setData( { storyId: storyId, longCommentCount: longCommentCount, shortCommentCount: shortCommentCount });
+  onLoad: function (options) {
+    var storyId = options['id'];
+    var longCommentCount = parseInt(options['lcount']);
+    var shortCommentCount = parseInt(options['scount']);
+    this.setData({ storyId: storyId, longCommentCount: longCommentCount, shortCommentCount: shortCommentCount });
   },
 
   //加载长评列表
-  onReady: function() {
+  onReady: function () {
     var storyId = this.data.storyId;
     var _this = this;
-    this.setData( { loading: true, toastHidden: true });
+    this.setData({ loading: true, toastHidden: true });
 
     //如果长评数量大于0，则加载长评，否则加载短评
-    if( this.data.longCommentCount > 0 ) {
-      requests.getStoryLongComments( storyId, ( data ) => {
-        console.log( data );
-        _this.setData( { longCommentData: covertDate(data.comments) });
+    if (this.data.longCommentCount > 0) {
+      requests.getStoryLongComments(storyId, (data) => {
+        _this.setData({ longCommentData: covertData(data.comments) });
       }, () => {
-        _this.setData( { toastHidden: false, toastMsg: '请求失败' });
+        _this.setData({ toastHidden: false, toastMsg: '请求失败' });
       }, () => {
-        _this.setData( { loading: false });
+        _this.setData({ loading: false });
       });
     } else {
-      loadShortComments.call( this );
+      loadShortComments.call(this);
     }
   },
 
   //加载短评列表
-  loadShortCommentEvent: function() {
+  loadShortCommentEvent: function () {
     //已经夹在过就无需再次加载 判断是否为null
-    if( this.data.shortCommentData )
+    if (this.data.shortCommentData)
       return;
-    loadShortComments.call( this );
+    loadShortComments.call(this);
   },
 
-  toastChangeEvent: function() {
-    this.setData( { toastHidden: true });
+  toastChangeEvent: function () {
+    this.setData({ toastHidden: true });
   },
 
-  onShow: function() {
+  onShow: function () {
     // 页面显示
   },
-  onHide: function() {
+  onHide: function () {
     // 页面隐藏
   },
-  onUnload: function() {
+  onUnload: function () {
     // 页面关闭
   }
 });
@@ -71,26 +71,27 @@ Page( {
 function loadShortComments() {
   var storyId = this.data.storyId;
   var _this = this;
-  this.setData( { loading: true, toastHidden: true });
-  requests.getStoryShortComments( storyId, ( data ) => {
-    _this.setData( { shortCommentData: covertDate(data.comments) });
+  this.setData({ loading: true, toastHidden: true });
+  requests.getStoryShortComments(storyId, (data) => {
+    _this.setData({ shortCommentData: covertData(data.comments) });
   }, () => {
-    _this.setData( { toastHidden: false, toastMsg: '请求失败' });
+    _this.setData({ toastHidden: false, toastMsg: '请求失败' });
   }, () => {
-    _this.setData( { loading: false });
+    _this.setData({ loading: false });
   });
 }
 
-function covertDate( comments ) {
-  if( comments ) {
-    for( var i = 0, len = comments.length;i < len;i++ ) {
-      comments[ i ][ 'time' ] = getDateDesc( comments[ i ][ 'time' ] );
+function covertData(comments) {
+  if (comments) {
+    for (var i = 0, len = comments.length; i < len; i++) {
+      comments[i]['avatar'] = utils.fixImgPrefix(comments[i]['avatar']);
+      comments[i]['time'] = getDateDesc(comments[i]['time']);
     }
   }
   return comments;
 }
 
-function getDateDesc( timstamp ) {
-  var date = new Date( timstamp * 1000 );
-  return ( date.getMonth() + 1 ) + '-' + date.getDate() + '  ' + date.getHours() + ':' + date.getMinutes();
+function getDateDesc(timstamp) {
+  var date = new Date(timstamp * 1000);
+  return (date.getMonth() + 1) + '-' + date.getDate() + '  ' + date.getHours() + ':' + date.getMinutes();
 }

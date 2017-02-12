@@ -1,38 +1,38 @@
-var requests = require( '../../requests/request.js' );
+var requests = require('../../requests/request.js');
+var util = require('../../utils/util.js');
 
-Page( {
+Page({
   data: {
     splash: {},
     screenHeight: 0,
     screenWidth: 0
   },
-  onLoad: function( options ) {
+  onLoad: function (options) {
     var _this = this;
-    wx.getSystemInfo( {
-      success: function( res ) {
-        _this.setData( {
+    wx.getSystemInfo({
+      success: function (res) {
+        _this.setData({
           screenHeight: res.windowHeight,
           screenWidth: res.windowWidth,
         });
       }
     });
   },
-  onReady: function() {
+  onReady: function () {
     var _this = this;
     var size = this.data.screenWidth + '*' + this.data.screenHeight;
-    requests.getSplashCover( size, ( data ) => {
-      data.img=data.img.replace("pic1","pic4");
-      data.img=data.img.replace("pic2","pic4");
-      _this.setData( { splash: data });
+    requests.getSplashCover(size, (data) => {
+      util.fixImgPrefix(data.img);
+      _this.setData({ splash: data });
     }, null, () => {
       toIndexPage.call(_this);
     });
   },
-  onShow: function() {
+  onShow: function () {
   },
-  onHide: function() {
+  onHide: function () {
   },
-  onUnload: function() {
+  onUnload: function () {
   }
 });
 
@@ -40,9 +40,9 @@ Page( {
  * 跳转到首页
  */
 function toIndexPage() {
-  setTimeout( function() {
-    wx.redirectTo( {
+  setTimeout(function () {
+    wx.redirectTo({
       url: '../index/index'
     });
-  }, 2000 );
+  }, 2000);
 }

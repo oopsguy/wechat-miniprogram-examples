@@ -10,9 +10,9 @@ function request(url, data, successCb, errorCb, completeCb) {
         method: 'GET',
         data: data,
         success: function(res) {
-            if (res.statusCode == 200)
+            if (res.statusCode == 200) {
                 utils.isFunction(successCb) && successCb(res.data);
-            else
+            }else
                 console.log('请求异常', res);
         },
         error: function() {

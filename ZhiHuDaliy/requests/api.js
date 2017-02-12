@@ -18,7 +18,7 @@ function getLatestNews() {
  * @param {int} newsId 日报id
  * @returns {string}
  */
-function getNewsDetail( newsId ) {
+function getNewsDetail(newsId) {
     return API_NEWS + '/' + newsId;
 }
 
@@ -28,7 +28,7 @@ function getNewsDetail( newsId ) {
  * @param {string} date 日期 yyyMMdd
  * @returns {string}
  */
-function getBeforeNews( date ) {
+function getBeforeNews(date) {
     return 'http://news.at.zhihu.com/api/4/news/before/' + date;
 }
 
@@ -37,7 +37,7 @@ function getBeforeNews( date ) {
  * @param {int} newsId 日报id
  * @returns {string}
  */
-function getStoryExtraInfo( storyId ) {
+function getStoryExtraInfo(storyId) {
     return API_STORY + '-extra/' + storyId;
 }
 
@@ -46,7 +46,7 @@ function getStoryExtraInfo( storyId ) {
  * @param {int} storyId 新闻idid
  * @returns {string}
  */
-function getStoryLongComments( storyId ) {
+function getStoryLongComments(storyId) {
     return API_STORY + '/' + storyId + '/long-comments';
 }
 
@@ -55,7 +55,7 @@ function getStoryLongComments( storyId ) {
  * @param {int} storyId 新闻idid
  * @returns {string}
  */
-function getStorytoryShortComments( storyId ) {
+function getStorytoryShortComments(storyId) {
     return API_STORY + '/' + storyId + '/short-comments';
 }
 
@@ -63,15 +63,15 @@ function getTheme() {
     return API_V4 + '/themes';
 }
 
-function getThemeStories( themeId ) {
+function getThemeStories(themeId) {
     return API_V4 + '/theme/' + themeId;
 }
 
-function getStoryLongComments( storyId ) {
+function getStoryLongComments(storyId) {
     return API_STORY + '/' + storyId + '/long-comments';
 }
 
-function getStoryShortComments( storyId ) {
+function getStoryShortComments(storyId) {
     return API_STORY + '/' + storyId + '/short-comments';
 }
 
@@ -80,7 +80,7 @@ function getStoryShortComments( storyId ) {
  * @param {string} size 图片尺寸 格式：width*height
  * @return {string}
  */
-function getSplashCover( size ) {
+function getSplashCover(size) {
     return API_V4 + "/start-image/" + size;
 }
 

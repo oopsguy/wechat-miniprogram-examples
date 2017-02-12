@@ -22,7 +22,6 @@ Page({
   onShow: function () {
     wx.getSystemInfo({
       success: (res) => {
-        console.log(res)
         this.setData({
           scrollHeight: res.windowHeight - (100 * res.windowWidth / 750) //80为顶部搜索框区域高度 rpx转px 屏幕宽度/750
         });

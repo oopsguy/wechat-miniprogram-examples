@@ -1,5 +1,5 @@
-var util = require( '../utils/util.js' );
-var api = require( './api.js' );
+var util = require('../utils/util.js');
+var api = require('./api.js');
 
 var app = getApp();
 
@@ -12,66 +12,66 @@ var app = getApp();
  * @param completeCallback {function} 完成回调函数
  * @returns {void}
  */
-function requestData( url, data, successCallback, errorCallback, completeCallback ) {
-    if( app.debug ) {
-        console.log( 'requestData url: ', url );
+function requestData(url, data, successCallback, errorCallback, completeCallback) {
+    if (app.debug) {
+        console.log('requestData url: ', url);
     }
-    wx.request( {
+    wx.request({
         url: url,
         data: data,
         header: { 'Content-Type': 'application/json' },
-        success: function( res ) {
-            if( app.debug ) {
-                console.log( 'response data: ', res );
+        success: function (res) {
+            if (app.debug) {
+                console.log('response data: ', res);
             }
-            if( res.statusCode == 200 )
-                util.isFunction( successCallback ) && successCallback( res.data );
+            if (res.statusCode == 200)
+                util.isFunction(successCallback) && successCallback(res.data);
             else
-                util.isFunction( errorCallback ) && errorCallback();
+                util.isFunction(errorCallback) && errorCallback();
         },
-        error: function() {
-            util.isFunction( errorCallback ) && errorCallback();
+        error: function () {
+            util.isFunction(errorCallback) && errorCallback();
         },
-        complete: function() {
-            util.isFunction( completeCallback ) && completeCallback();
+        complete: function () {
+            util.isFunction(completeCallback) && completeCallback();
         }
     });
 }
 
-function getNewsLatest( successCallback, errorCallback, completeCallback ) {
-    requestData( api.getLatestNews(), {}, successCallback, errorCallback, completeCallback );
+function getNewsLatest(successCallback, errorCallback, completeCallback) {
+    requestData(api.getLatestNews(), {}, successCallback, errorCallback, completeCallback);
 }
 
-function getBeforeNews( date, successCallback, errorCallback, completeCallback ) {
-    requestData( api.getBeforeNews( date ), {}, successCallback, errorCallback, completeCallback );
+function getBeforeNews(date, successCallback, errorCallback, completeCallback) {
+    requestData(api.getBeforeNews(date), {}, successCallback, errorCallback, completeCallback);
 }
 
-function getNewsDetail( newsId, successCallback, errorCallback, completeCallback ) {
-    requestData( api.getNewsDetail( newsId ), {}, successCallback, errorCallback, completeCallback );
+function getNewsDetail(newsId, successCallback, errorCallback, completeCallback) {
+    requestData(api.getNewsDetail(newsId), {}, successCallback, errorCallback, completeCallback);
 }
 
-function getTheme( successCallback, errorCallback, completeCallback ) {
-    requestData( api.getTheme(), {}, successCallback, errorCallback, completeCallback );
+function getTheme(successCallback, errorCallback, completeCallback) {
+    requestData(api.getTheme(), {}, successCallback, errorCallback, completeCallback);
 }
 
-function getThemeStories( themeId, successCallback, errorCallback, completeCallback ) {
-    requestData( api.getThemeStories( themeId ), {}, successCallback, errorCallback, completeCallback );
+function getThemeStories(themeId, successCallback, errorCallback, completeCallback) {
+    requestData(api.getThemeStories(themeId), {}, successCallback, errorCallback, completeCallback);
 }
 
-function getStoryShortComments( storyId, successCallback, errorCallback, completeCallback ) {
-    requestData( api.getStoryShortComments( storyId ), {}, successCallback, errorCallback, completeCallback );
+function getStoryShortComments(storyId, successCallback, errorCallback, completeCallback) {
+    requestData(api.getStoryShortComments(storyId), {}, successCallback, errorCallback, completeCallback);
 }
 
-function getStoryLongComments( storyId, successCallback, errorCallback, completeCallback ) {
-    requestData( api.getStoryLongComments( storyId ), {}, successCallback, errorCallback, completeCallback );
+function getStoryLongComments(storyId, successCallback, errorCallback, completeCallback) {
+    requestData(api.getStoryLongComments(storyId), {}, successCallback, errorCallback, completeCallback);
 }
 
-function getStoryExtraInfo( storyId, successCallback, errorCallback, completeCallback ) {
-    requestData( api.getStoryExtraInfo( storyId ), {}, successCallback, errorCallback, completeCallback );
+function getStoryExtraInfo(storyId, successCallback, errorCallback, completeCallback) {
+    requestData(api.getStoryExtraInfo(storyId), {}, successCallback, errorCallback, completeCallback);
 }
 
-function getSplashCover( size, successCallback, errorCallback, completeCallback ) {
-    requestData( api.getSplashCover( size ), {}, successCallback, errorCallback, completeCallback );
+function getSplashCover(size, successCallback, errorCallback, completeCallback) {
+    requestData(api.getSplashCover(size), {}, successCallback, errorCallback, completeCallback);
 }
 
 module.exports = {
