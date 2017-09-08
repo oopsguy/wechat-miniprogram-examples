@@ -1,5 +1,5 @@
 import DataRepository from 'DataRepository';
-import {promiseHandle} from '../utils/util';
+import { promiseHandle } from '../utils/util';
 
 /**
  * 数据业务类
@@ -47,7 +47,7 @@ class DataSerivce {
      */
     static findById(id) {
         return DataRepository.findBy(item => item['_id'] == id)
-            .then(items => (items && items.length > 0) ? items[0] : null); 
+            .then(items => (items && items.length > 0) ? items[0] : null);
     }
 
     /**

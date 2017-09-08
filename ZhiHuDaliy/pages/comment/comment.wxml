@@ -4,7 +4,7 @@
     </view>
 
     <view class="common-list">
-        <block wx:for="{{longCommentData}}">
+        <block wx:for="{{longCommentData}}" wx:key="id">
             <view class="list-item has-img" data-id="{{item.id}}">
                 <view class="content">
                     <view class="header">
@@ -15,7 +15,7 @@
                     <text class="bottom">{{item.time}}</text>
                 </view>
                 <image src="{{item.avatar}}" class="cover" />
-            </view>  
+            </view>
         </block>
     </view>
 
@@ -24,7 +24,7 @@
     </view>
 
     <view class="common-list">
-        <block wx:for="{{shortCommentData}}">
+        <block wx:for="{{shortCommentData}}" wx:key="id">
             <view class="list-item has-img" data-id="{{item.id}}">
                 <view class="content">
                     <view class="header">
@@ -35,7 +35,7 @@
                     <text class="bottom">{{item.time}}</text>
                 </view>
                 <image src="{{item.avatar}}" class="cover" />
-            </view>  
+            </view>
         </block>
     </view>
 

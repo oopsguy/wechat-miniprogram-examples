@@ -1,6 +1,6 @@
 import DataService from '../../datas/DataService';
-import {getDateStr} from '../../utils/util';
-import {LEVEL} from '../../datas/Config';
+import { getDateStr } from '../../utils/util';
+import { LEVEL } from '../../datas/Config';
 
 Page({
     data: {
@@ -9,9 +9,10 @@ Page({
     },
 
     onLoad(option) {
-        const {id} = option;
+        const { id } = option;
         let item = DataService.findById(id).then((item) => {
             item['addDate'] = getDateStr(new Date(item['addDate']));
+            console.log(item)
             this.setData({
                 item: item
             });

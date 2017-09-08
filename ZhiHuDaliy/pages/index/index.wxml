@@ -95,7 +95,7 @@
   </view>
   <view class="editors" wx:if="{{themeId!=-1}}">
     <text>主编</text>
-    <block wx:for="{{editorData}}">
+    <block wx:for="{{editorData}}" wx:key="id">
       <image src="{{item.avatar}}" data-id="{{item.id}}"></image>
     </block>
   </view>

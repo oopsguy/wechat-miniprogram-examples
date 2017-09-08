@@ -37,7 +37,7 @@
         </view>
     </view>-->
   <view style="padding-bottom: 150rpx;">
-    <block wx:for="{{news.body}}">
+    <block wx:for="{{news.body}}" wx:key="index">
       <view class="article">
         <view class="title" wx:if="{{item.title && item.title != ''}}">
           <text>{{item.title}}</text>
@@ -48,7 +48,7 @@
           <text wx:if="{{item.bio && item.bio != ''}}" class="author-mark">{{item.bio}}</text>
         </view>
         <view class="content" wx:if="{{item.content && item.content.length > 0}}">
-          <block wx:for="{{item.content}}" wx:for-item="it">
+          <block wx:for="{{item.content}}" wx:key="index" wx:for-item="it">
             <block wx:if="{{it.type == 'p'}}">
               <text>{{it.value}}</text>
             </block>

@@ -1,5 +1,5 @@
 import Config from 'Config';
-import {guid, log, promiseHandle} from '../utils/util';
+import { guid, log, promiseHandle } from '../utils/util';
 
 class DataRepository {
 
@@ -14,7 +14,7 @@ class DataRepository {
         return DataRepository.findAllData().then(allData => {
             allData = allData || [];
             allData.unshift(data);
-            wx.setStorage({key:Config.ITEMS_SAVE_KEY, data: allData});
+            wx.setStorage({ key: Config.ITEMS_SAVE_KEY, data: allData });
         });
     }
 
@@ -32,7 +32,7 @@ class DataRepository {
                     break;
                 }
             }
-            wx.setStorage({key: Config.ITEMS_SAVE_KEY, data: data});
+            wx.setStorage({ key: Config.ITEMS_SAVE_KEY, data: data });
         });
     }
 
@@ -54,15 +54,15 @@ class DataRepository {
                     }
                 }
             }
-            
+
             let tmpIdx = 0;
             indexs.forEach(item => {
                 data.splice(item - tmpIdx, 1);
                 tmpIdx++;
             });
-            wx.setStorage({key: Config.ITEMS_SAVE_KEY, data: data});
+            wx.setStorage({ key: Config.ITEMS_SAVE_KEY, data: data });
         });
-        
+
     }
 
     /**
@@ -80,9 +80,9 @@ class DataRepository {
                     break;
                 }
             }
-            wx.setStorage({key: Config.ITEMS_SAVE_KEY, data: data});
+            wx.setStorage({ key: Config.ITEMS_SAVE_KEY, data: data });
         });
-        
+
     }
 
     /**
@@ -90,7 +90,7 @@ class DataRepository {
      * @returns {Promise} Promise实例
      */
     static findAllData() {
-        return promiseHandle(wx.getStorage, {key: Config.ITEMS_SAVE_KEY}).then(res => res.data ? res.data : []).catch(ex => {
+        return promiseHandle(wx.getStorage, { key: Config.ITEMS_SAVE_KEY }).then(res => res.data ? res.data : []).catch(ex => {
             log(ex);
         });
     }
