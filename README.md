@@ -1,7 +1,7 @@
 # 微信小程序示例
 
-- [2017-9-9] 本人现在的工作与小程序暂无交集，但还是会偶尔跟进小程序的 API 变更，保持示例能正常运行，同时欢迎大家指出问题。
-- [2016-11-3] 微信小程序最近很火热，虽然目前还处于内侧状态，但笔者还是经常看得到许多微信小程序的相关文章，既然它这么火热，自己也想利用空闲时间来尝试学习并做出点东西。笔者刚毕业不久，参加工作也只有 3 个月，实际的开发能力并不能与大牛相比，所做的 DEMO 技术含量比较低，个人目的在于记录下每次学习的过程和与大家分享每一次学习之后的成果。由于工作比较忙，只能抽周末的时间来完善 DEMO，计划中的 DEMO 有几个，以后会慢慢更新。
+- [2017-09-09] 本人现在的工作与小程序暂无交集，但还是会偶尔跟进小程序的 API 变更，保持示例能正常运行，同时欢迎大家指出问题。
+- [2016-11-03] 微信小程序最近很火热，虽然目前还处于内侧状态，但笔者还是经常看得到许多微信小程序的相关文章，既然它这么火热，自己也想利用空闲时间来尝试学习并做出点东西。笔者刚毕业不久，参加工作也只有 3 个月，实际的开发能力并不能与大牛相比，所做的 DEMO 技术含量比较低，个人目的在于记录下每次学习的过程和与大家分享每一次学习之后的成果。由于工作比较忙，只能抽周末的时间来完善 DEMO，计划中的 DEMO 有几个，以后会慢慢更新。
 
 ![cover](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/cover.png)
 
@@ -19,11 +19,11 @@
 
 - [2016-10-29] 由于官方不定期升级 IDE，小程序的部分功能被修改和移除，导致之前的项目不能正常运行。现在的代码以最新版 IDE 运行环境为准，即 0.10.102800 版本，可[点击下载](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html)，虽然修改了代码以适应最新版本的开发环境，但是之前的有些布局和做法已经不再受到官方的支持，所以实际运行效果与效果图中的展示可能存在差异。
 
-> `知乎日报`案例上传之后，有比较热心的网友贡献自己的代码修复了很多 bug，非常感谢
+## 感谢
+`知乎日报`案例上传之后，有比较热心的网友贡献自己的代码修复了很多 bug，非常感谢
 
 - [@jkgeekJack](https://github.com/jkgeekJack)  
   美化部分 UI，增加收藏功能，把主页、主题和收藏页改为单页模式，修复部分图片不能显示的问题，部分代码重构，内容转义字符显示问题修复。
-
 
 ## 相关博文
 
@@ -69,8 +69,6 @@
 
 ![DouBanBookApp详细页](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/1-3.jpg)
 
-## 代码仓库
+## LICENSE
 
-[https://github.com/oopsguy/WechatSmallApps](https://github.com/oopsguy/WechatSmallApps)
-
-[http://git.oschina.net/oopsguy/WechatSmallApps](http://git.oschina.net/oopsguy/WechatSmallApps)
+MIT LICENSE
