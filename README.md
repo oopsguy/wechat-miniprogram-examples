@@ -3,7 +3,7 @@
 - [2017-09-09] 本人现在的工作与小程序暂无交集，但还是会偶尔跟进小程序的 API 变更，保持示例能正常运行，同时欢迎大家指出问题。
 - [2016-11-03] 微信小程序最近很火热，虽然目前还处于内侧状态，但笔者还是经常看得到许多微信小程序的相关文章，既然它这么火热，自己也想利用空闲时间来尝试学习并做出点东西。笔者刚毕业不久，参加工作也只有 3 个月，实际的开发能力并不能与大牛相比，所做的 DEMO 技术含量比较低，个人目的在于记录下每次学习的过程和与大家分享每一次学习之后的成果。由于工作比较忙，只能抽周末的时间来完善 DEMO，计划中的 DEMO 有几个，以后会慢慢更新。
 
-![cover](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/cover.png)
+![cover](resources/cover.png)
 
 ## 更新日志
 - [2017-09-09] 代码开发的默认 IDE 版本升级到 v1.0.1.170907，为 `wx:for` 添加 `wx:key` 属性，修改事项助手的 ActionSheet 行为，显示声明取消处理事件（即 Promise 的 catch），修改 bindchange 为 bindinput。
@@ -37,37 +37,37 @@
 
 介绍小程序的ES6开发方式，基础到写法，最后给出[事项助手](http://oopsguy.com)作为演示例子，事项助手的功能比较简单，附带日历组件和简单的事项信息存储功能。
 
-![事项助手首页](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/3-1.png)
+![事项助手首页](resources/3-1.png)
 
 ### ZhiHuDaliy 知乎日报
 
 上一次的《微信小程序之小豆瓣图书》制作了一个图书的查询功能，只是简单地应用到了网络请求，其他大多数小程序应有的知识。而本次的示例是`知乎日报`，功能点比较多，页面也比上次复杂了许多。在我编写这个DEMO之前，网上已经有很多网友弄出了相同的DEMO，也是非常不错的，毕竟这个案例很经典，有比较完整的API，很值得模仿学习。本次个人的DEMO也算是一次小小的练习吧。
 
-![Splash启动页面](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/2-1.png)
+![Splash启动页面](resources/2-1.png)
 
-![首页](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/2-2.png)
+![首页](resources/2-2.png)
 
-![侧栏菜单](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/2-3.png)
+![侧栏菜单](resources/2-3.png)
 
-![详细页面2](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/2-4.png)
+![详细页面2](resources/2-4.png)
 
-![内容分享](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/2-5.png)
+![内容分享](resources/2-5.png)
 
-![评论页面](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/2-6.png)
+![评论页面](resources/2-6.png)
 
-![主题日报](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/2-7.png)
+![主题日报](resources/2-7.png)
 
-![设置页面](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/2-8.png)
+![设置页面](resources/2-8.png)
 
 ### DoubanBookApp 豆瓣图书
 
 很简单的一个小例子，使用了两个豆瓣图书的api，搜索图书和获取图书详情接口。这是第一个自己的第一个微信小应用。
 
-![DouBanBookApp首页](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/1-1.jpg)
+![DouBanBookApp首页](resources/1-1.jpg)
 
-![DouBanBookApp列表页](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/1-2.jpg)
+![DouBanBookApp列表页](resources/1-2.jpg)
 
-![DouBanBookApp详细页](https://github.com/oopsguy/WechatSmallApps/blob/master/resources/1-3.jpg)
+![DouBanBookApp详细页](resources/1-3.jpg)
 
 ## LICENSE
 
