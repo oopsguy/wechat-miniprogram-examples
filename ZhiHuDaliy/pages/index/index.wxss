@@ -1,48 +1,54 @@
-.main-list-header .title,
-.main-list-header .date {
+.main-list-header .title, .main-list-header .date {
   display: inline-block;
-  color: #FFF;
+  color: #fff;
   font-size: 30rpx;
   padding: 25rpx;
 }
+
 .main-list-header .title {
-  background: #20B4F0;
+  background: #20b4f0;
 }
+
 .main-list-header .date {
-  background: #019DD6;
+  background: #019dd6;
 }
-.list-item{
+
+.list-item {
   width: 90%;
-  margin:30rpx 2%;
+  margin: 30rpx 2%;
   padding: 5px 10px 6px;
   border-radius: 0;
-  border-bottom: 1px solid rgba(0,0,0,0.25);
-  box-shadow:0 1px 2px rgba(0,0,0,0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /*slide-menu*/
+
 .slide-mask {
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, .3);
+  background: rgba(0, 0, 0, 0.3);
   z-index: 800;
 }
+
 .slide-menu {
   position: fixed;
   top: 0;
-  background: #FFF;
+  background: #fff;
   z-index: 900;
 }
+
 /*.slide-menu .slide-inner {
   padding: 40rpx;
 }*/
+
 .slide-menu .header {
-  background: #019DD6;
+  background: #019dd6;
   height: 200rpx;
-  color: #FFF;
+  color: #fff;
   padding: 20rpx 40rpx 0 40rpx;
 }
 
@@ -51,6 +57,7 @@
   line-height: 80rpx;
   overflow: hidden;
 }
+
 .userinfo .avatar {
   width: 80rpx;
   height: 80rpx;
@@ -58,25 +65,30 @@
   margin-right: 40rpx;
   float: left;
 }
+
 .userinfo text {
   float: left;
   font-size: 35rpx;
 }
+
 .toolbar {
   height: 100rpx;
   padding-top: 25rpx;
   line-height: 75rpx;
 }
+
 .toolbar .item {
   width: 50%;
   display: inline-block;
   overflow: hidden;
-  text-align: center
+  text-align: center;
 }
+
 .toolbar .item text {
   display: inline-block;
-  font-size: 30rpx
+  font-size: 30rpx;
 }
+
 .toolbar .item image {
   display: inline-block;
   position: relative;
@@ -93,9 +105,11 @@
   padding: 0 40rpx;
   font-size: 35rpx;
 }
+
 .slide-menu .menu-item:active {
-  background: #FAFAFA;
+  background: #fafafa;
 }
+
 .slide-menu .menu-item image {
   position: absolute;
   top: 25rpx;
@@ -103,78 +117,86 @@
   width: 50rpx;
   height: 50rpx;
 }
+
 .home-icon {
   position: absolute;
   top: 25rpx;
   left: 40rpx;
 }
+
 .home-text {
   position: absolute;
   left: 100rpx;
 }
+
 .slide-menu .home {
-  color: #019DD6
+  color: #019dd6;
 }
 
 .slide-menu .close-btn {
   position: absolute;
   top: 20rpx;
   right: 40rpx;
-  z-index: 1000
+  z-index: 1000;
 }
 
-
 /*合并theme的*/
-.list-item{
+
+.list-item {
   width: 90%;
-  margin:30rpx 2%;
+  margin: 30rpx 2%;
   padding: 5px 10px 6px;
   border-radius: 5rpx;
-  border-bottom: 1px solid rgba(0,0,0,0.25);
-  box-shadow:0 1px 2px rgba(0,0,0,0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .header-cover {
   position: relative;
   height: 500rpx;
-  overflow: hidden
+  overflow: hidden;
 }
+
 .header-cover image {
   width: 100%;
 }
+
 .header-cover .mask {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   width: 100%;
-  background: rgba(0, 0, 0, .3);
+  background: rgba(0, 0, 0, 0.3);
 }
+
 .header-cover .desc {
   position: absolute;
   left: 0;
   bottom: 0;
   padding: 0 20rpx 60rpx 20rpx;
   font-size: 40rpx;
-  color: #FFF;
-  z-index: 10
+  color: #fff;
+  z-index: 10;
 }
 
 .editors {
   padding: 20rpx;
   height: 60rpx;
   line-height: 60rpx;
-  background: #FAFAFA;
+  background: #fafafa;
 }
-.editors text,
-.editors image {
-  float: left
+
+.editors text, .editors image {
+  float: left;
 }
+
 .editors text {
-  color: #AAA;
+  color: #aaa;
   margin-right: 40rpx;
   font-size: 30rpx;
 }
+
 .editors image {
   width: 60rpx;
   height: 60rpx;

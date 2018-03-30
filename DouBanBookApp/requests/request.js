@@ -8,9 +8,6 @@ function request(url, data, successCb, errorCb, completeCb) {
     wx.request({
         url: url,
         method: 'GET',
-        header: {
-          'Content-Type': 'json'
-        },
         data: data,
         success: function(res) {
             if (res.statusCode == 200) {

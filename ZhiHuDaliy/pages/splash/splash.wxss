@@ -1,39 +1,44 @@
 page {
-    background: #DDD;
+  background: #ddd;
 }
+
 .cover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    bottom: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  bottom: 0;
 }
+
 .mask {
-    position: absolute;
-    bottom: 100rpx;
-    left: 0;
-    height: 150rpx;
-    width: 100%;
-    background: rgba(0, 0, 0, .3)
+  position: absolute;
+  bottom: 100rpx;
+  left: 0;
+  height: 150rpx;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
 }
+
 .logo {
-    margin-left: 100rpx;
-    width: 150rpx;
-    height: 150rpx;
+  margin-left: 100rpx;
+  width: 150rpx;
+  height: 150rpx;
 }
-.mask .cover-author,
-.mask .app-author {
-    position: absolute;
-    left: 280rpx;
+
+.mask .cover-author, .mask .app-author {
+  position: absolute;
+  left: 280rpx;
 }
+
 .mask .cover-author {
-    top: 20rpx;
-    font-size: 40rpx;
-    color: #FFF;
-    font-weight: bold
+  top: 20rpx;
+  font-size: 40rpx;
+  color: #fff;
+  font-weight: bold;
 }
+
 .mask .app-author {
-    font-size: 30rpx;
-    bottom: 20rpx;
-    color: #EEE
+  font-size: 30rpx;
+  bottom: 20rpx;
+  color: #eee;
 }

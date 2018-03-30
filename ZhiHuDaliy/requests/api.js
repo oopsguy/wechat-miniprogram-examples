@@ -10,7 +10,7 @@ const API_STORY = API_V4 + '/story';
  * @returns {string}
  */
 function getLatestNews() {
-    return API_NEWS + '/latest';
+  return API_NEWS + '/latest';
 }
 
 /**
@@ -19,7 +19,7 @@ function getLatestNews() {
  * @returns {string}
  */
 function getNewsDetail(newsId) {
-    return API_NEWS + '/' + newsId;
+  return API_NEWS + '/' + newsId;
 }
 
 /**
@@ -29,7 +29,7 @@ function getNewsDetail(newsId) {
  * @returns {string}
  */
 function getBeforeNews(date) {
-    return 'http://news.at.zhihu.com/api/4/news/before/' + date;
+  return 'http://news.at.zhihu.com/api/4/news/before/' + date;
 }
 
 /**
@@ -38,7 +38,7 @@ function getBeforeNews(date) {
  * @returns {string}
  */
 function getStoryExtraInfo(storyId) {
-    return API_STORY + '-extra/' + storyId;
+  return API_STORY + '-extra/' + storyId;
 }
 
 /**
@@ -47,7 +47,7 @@ function getStoryExtraInfo(storyId) {
  * @returns {string}
  */
 function getStoryLongComments(storyId) {
-    return API_STORY + '/' + storyId + '/long-comments';
+  return API_STORY + '/' + storyId + '/long-comments';
 }
 
 /**
@@ -56,23 +56,23 @@ function getStoryLongComments(storyId) {
  * @returns {string}
  */
 function getStorytoryShortComments(storyId) {
-    return API_STORY + '/' + storyId + '/short-comments';
+  return API_STORY + '/' + storyId + '/short-comments';
 }
 
 function getTheme() {
-    return API_V4 + '/themes';
+  return API_V4 + '/themes';
 }
 
 function getThemeStories(themeId) {
-    return API_V4 + '/theme/' + themeId;
+  return API_V4 + '/theme/' + themeId;
 }
 
 function getStoryLongComments(storyId) {
-    return API_STORY + '/' + storyId + '/long-comments';
+  return API_STORY + '/' + storyId + '/long-comments';
 }
 
 function getStoryShortComments(storyId) {
-    return API_STORY + '/' + storyId + '/short-comments';
+  return API_STORY + '/' + storyId + '/short-comments';
 }
 
 /**
@@ -81,17 +81,17 @@ function getStoryShortComments(storyId) {
  * @return {string}
  */
 function getSplashCover(size) {
-    return API_V4 + "/start-image/" + size;
+  return API_V4 + "/start-image/" + size;
 }
 
 module.exports = {
-    getLatestNews: getLatestNews,
-    getNewsDetail: getNewsDetail,
-    getBeforeNews: getBeforeNews,
-    getTheme: getTheme,
-    getStoryExtraInfo: getStoryExtraInfo,
-    getThemeStories: getThemeStories,
-    getStoryShortComments: getStoryShortComments,
-    getStoryLongComments: getStoryLongComments,
-    getSplashCover: getSplashCover
+  getLatestNews: getLatestNews,
+  getNewsDetail: getNewsDetail,
+  getBeforeNews: getBeforeNews,
+  getTheme: getTheme,
+  getStoryExtraInfo: getStoryExtraInfo,
+  getThemeStories: getThemeStories,
+  getStoryShortComments: getStoryShortComments,
+  getStoryLongComments: getStoryLongComments,
+  getSplashCover: getSplashCover
 };

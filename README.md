@@ -6,7 +6,9 @@
 ![cover](resources/cover.png)
 
 ## 更新日志
-- [2017-09-09] 代码开发的默认 IDE 版本升级到 v1.0.1.170907，为 `wx:for` 添加 `wx:key` 属性，修改事项助手的 ActionSheet 行为，显示声明取消处理事件（即 Promise 的 catch），修改 bindchange 为 bindinput。
+
+- [2018-03-31] 修复知乎日报图片显示问题和空数据报错问题，修复事项助手空数据问题。由于豆瓣接口被官方屏蔽，暂无直接解决方法，可参照网上使用 Nginx 代理方式。
+- [2017-09-09] 代码开发的默认 IDE 版本升级到 v1.0.1.170907，为 `wx:for` 添加 `wx:key` 属性，修改事项助手的 ActionSheet 行为，显示声明取消处理事件（即 Promise 的 catch），修改 `bindchange` 为 `bindinput`。
 - [2017-08-23] 修复豆瓣图书 Demo 的数据请求失败问题，修改 `request` 的 `header` 中的 `Content-Type` 为 `json` 或者 `html`。
 
 - [2017-02-12] 修改知乎日报案例的图片路径，修复获取知乎图片失败的问题，启动界面的图片获取接口被限制，暂无办法解决！
