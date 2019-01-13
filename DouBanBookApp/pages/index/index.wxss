@@ -1,14 +1,15 @@
 page {
-  background: #F2F1EE;
+  background: #f2f1ee;
 }
 
 .logo {
-  text-align:center;
-  padding-top:50rpx;
+  text-align: center;
+  padding-top: 50rpx;
   font-size: 40rpx;
   font-weight: bold;
-  color: #AAA
+  color: #aaa;
 }
+
 .logo image {
   width: 250rpx;
   height: 250rpx;
@@ -19,20 +20,22 @@ page {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #42BD56;
-  color: #FFF;
+  background-color: #42bd56;
+  color: #fff;
   height: 80rpx;
   padding: 10rpx 20rpx;
   z-index: 100;
 }
+
 .search-container input {
-  background: #FFF;
-  color: #AAA;
-  padding: 5px 10rpx;
+  background: #fff;
+  color: #aaa;
+  padding: 5px 80rpx 5px 10rpx;
   height: 40rpx;
   width: 100%;
   border-radius: 8rpx;
 }
+
 .search-container icon {
   position: absolute;
   z-index: 10;
@@ -42,10 +45,12 @@ page {
 }
 
 /*header*/
+
 .header {
   padding: 20rpx 30rpx;
 }
+
 .header text {
-  color: #A6A6A6;
-  font-size: 35rpx
+  color: #a6a6a6;
+  font-size: 35rpx;
 }
