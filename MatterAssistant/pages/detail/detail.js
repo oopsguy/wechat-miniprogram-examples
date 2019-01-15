@@ -1,6 +1,10 @@
-import DataService from '../../datas/DataService';
-import { getDateStr } from '../../utils/util';
-import { LEVEL } from '../../datas/Config';
+import Data from '../../common/data';
+import {
+  getDateStr
+} from '../../common/util';
+import {
+  LEVEL
+} from '../../common/constant';
 
 Page({
   data: {
@@ -9,12 +13,19 @@ Page({
   },
 
   onLoad(option) {
-    const { id } = option;
-    let item = DataService.findById(id).then((item) => {
+    const {
+      id
+    } = option;
+    Data.findOneById(id).then((item) => {
       item['addDate'] = getDateStr(new Date(item['addDate']));
-      console.log(item)
       this.setData({
         item: item
+      });
+    }).catch(() => {
+      wx.showToast({
+        title: '数据加载失败',
+        icon: 'none',
+        duration: 2000
       });
     });
   }

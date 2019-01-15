@@ -1,6 +1,10 @@
-import DataService from '../../datas/DataService';
-import { LEVEL } from '../../datas/Config';
-import { promiseHandle, log, formatNumber } from '../../utils/util';
+import Data from '../../common/data';
+import {
+  LEVEL
+} from '../../common/constant';
+import {
+  formatNumber
+} from '../../common/util';
 
 Page({
   data: {
@@ -13,11 +17,10 @@ Page({
     isMaskShow: false,
     isEditMode: false,
 
-    // modal
     isModalShow: false,
     modalMsg: '',
 
-    //事项等级数据
+    // 事项等级数据
     levelSelectedValue: LEVEL.normal,
     levelSelectData: [LEVEL.normal, LEVEL.warning, LEVEL.danger],
 
@@ -29,17 +32,21 @@ Page({
 
     // 事项列表
     itemList: [],
-    editItemList: [] //编辑勾选中的事项id
+    //编辑勾选中的事项id
+    editItemList: [] 
   },
 
   onLoad() {
-    let _this = this;
-    promiseHandle(wx.getSystemInfo).then((data) => {
-      _this.setData({
-        updatePanelTop: data.windowHeight
-      });
+    wx.getSystemInfo({
+      success: (data) => {
+        this.setData({
+          updatePanelTop: data.windowHeight
+        });
+      },
+      complete: () => {
+        changeDate.call(this);
+      }
     });
-    changeDate.call(this);
   },
 
   onReady() {
@@ -52,20 +59,31 @@ Page({
   },
 
   changeDateEvent(e) {
-    const { year, month } = e.currentTarget.dataset;
+    const {
+      year,
+      month
+    } = e.currentTarget.dataset;
     changeDate.call(this, new Date(year, parseInt(month) - 1, 1));
   },
 
   dateClickEvent(e) {
-    const { year, month, date } = e.currentTarget.dataset;
-    const { data } = this.data;
+    const {
+      year,
+      month,
+      date
+    } = e.currentTarget.dataset;
+    const {
+      data
+    } = this.data;
     let selectDateText = '';
 
     data['selected']['year'] = year;
     data['selected']['month'] = month;
     data['selected']['date'] = date;
 
-    this.setData({ data: data });
+    this.setData({
+      data: data
+    });
 
     changeDate.call(this, new Date(year, parseInt(month) - 1, date));
   },
@@ -79,76 +97,112 @@ Page({
   },
 
   editClickEvent() {
-    this.setData({ isEditMode: true });
+    this.setData({
+      isEditMode: true
+    });
   },
 
   // 事项列表项长按动作事件
   listItemLongTapEvent(e) {
-    const { isEditMode } = this.data;
-    const { id } = e.currentTarget.dataset;
-    let _this = this;
+    const {
+      isEditMode
+    } = this.data;
+    const {
+      id
+    } = e.currentTarget.dataset;
     //如果不是编辑勾选模式下才生效
     if (!isEditMode) {
       const itemList = ['详情', '删除'];
-      promiseHandle(wx.showActionSheet, { itemList: itemList || null, itemColor: '#2E2E3B' })
-        .then((res) => {
+
+      wx.showActionSheet({
+        itemList: itemList || null,
+        itemColor: '#2E2E3B',
+        success: (res) => {
           if (!res.cancel) {
             switch (itemList[res.tapIndex]) {
               case '详情':
-                wx.navigateTo({ url: '../detail/detail?id=' + id });
+                wx.navigateTo({
+                  url: '../detail/detail?id=' + id
+                });
                 break;
               case '删除':
-                new DataService({ _id: id }).delete().then(() => {
-                  loadItemListData.call(_this);
+                Data.removeOneById(id).then(() => {
+                  loadItemListData.call(this);
+                }).catch(() => {
+                  wx.showToast({
+                    title: '删除失败',
+                    icon: 'none',
+                    duration: 2000
+                  });
                 });
                 break;
             }
           }
-        }).catch(() => {
-          //2017.9.9 添加取消事件处理
-          //官方文档：tip: wx.showActionSheet 点击取消或蒙层时，回调 fail, errMsg 为 "showActionSheet:fail cancel"；
-        });
+        }
+      });
     }
   },
 
   //取消编辑事件
   cancelEditClickEvent() {
-    this.setData({ isEditMode: false });
+    this.setData({
+      isEditMode: false
+    });
     resetItemListDataCheck.call(this);
   },
 
   // 事项标题文本框变化事件
   todoInputChangeEvent(e) {
-    const { value } = e.detail;
-    this.setData({ todoInputValue: value });
+    const {
+      value
+    } = e.detail;
+    this.setData({
+      todoInputValue: value
+    });
   },
 
   //事项内容多行文本域变化事件
   todoTextAreaChangeEvent(e) {
-    const { value } = e.detail;
-    this.setData({ todoTextAreaValue: value });
+    const {
+      value
+    } = e.detail;
+    this.setData({
+      todoTextAreaValue: value
+    });
   },
 
   // 选择事项等级事件  
   levelClickEvent(e) {
-    const { level } = e.currentTarget.dataset;
-    this.setData({ levelSelectedValue: level });
+    const {
+      level
+    } = e.currentTarget.dataset;
+    this.setData({
+      levelSelectedValue: level
+    });
   },
 
   // 保存事项数据
   saveDataEvent() {
-    const { todoInputValue, todoTextAreaValue, levelSelectedValue } = this.data;
-    const { year, month, date } = this.data.data.selected;
+    const {
+      todoInputValue,
+      todoTextAreaValue,
+      levelSelectedValue
+    } = this.data;
+    const {
+      year,
+      month,
+      date
+    } = this.data.data.selected;
+
     if (todoInputValue !== '') {
-      let promise = new DataService({
+      Data.save({
         title: todoInputValue,
         content: todoTextAreaValue,
         level: levelSelectedValue,
         year: year,
         month: parseInt(month) - 1,
         date: date
-      }).save();
-      promise && promise.then(() => {
+      }).then(() => {
         //清空表单
         this.setData({
           todoTextAreaValue: '',
@@ -156,7 +210,13 @@ Page({
           todoInputValue: ''
         });
         loadItemListData.call(this);
-      })
+      }).catch(() => {
+        wx.showToast({
+          title: '保存失败',
+          icon: 'none',
+          duration: 2000
+        });
+      });
       closeUpdatePanel.call(this);
     } else {
       showModal.call(this, '请填写事项内容');
@@ -165,18 +225,27 @@ Page({
 
   //批量删除事件
   removeRangeTapEvent() {
-    let { itemList } = this.data;
-    if (!itemList) return;
-    let _this = this;
+    let {
+      itemList
+    } = this.data;
+    if (!itemList) {
+      return;
+    }
     wx.showModal({
       title: '提示',
       content: '确定要删除选定的事项？',
       success: (res) => {
         if (res.confirm) {
-          DataService.deleteRange(_this.data.editItemList).then(() => {
-            loadItemListData.call(_this);
+          Data.removeByIds(this.data.editItemList).then(() => {
+            loadItemListData.call(this);
+          }).catch(() => {
+            wx.showToast({
+              title: '删除失败',
+              icon: 'none',
+              duration: 2000
+            });
           });
-          _this.setData({
+          this.setData({
             editItemList: [],
             isEditMode: false
           });
@@ -186,8 +255,12 @@ Page({
   },
 
   listItemClickEvent(e) {
-    const { isEditMode } = this.data;
-    const { id } = e.currentTarget.dataset;
+    const {
+      isEditMode
+    } = this.data;
+    const {
+      id
+    } = e.currentTarget.dataset;
 
     if (!isEditMode) {
       this.listItemLongTapEvent(e); //由于元素的长按和点击事件有冲突，暂时合并在一起，直接调用长按事件
@@ -210,7 +283,10 @@ Page({
       } else {
         editItemList.splice(tIndx, 1);
       }
-      this.setData({ itemList: data || null, editItemList: editItemList });
+      this.setData({
+        itemList: data || null,
+        editItemList: editItemList
+      });
     }
   },
 
@@ -225,7 +301,7 @@ Page({
  */
 function showUpdatePanel() {
   let animation = wx.createAnimation({
-    duration: 600
+    duration: 300
   });
   animation.translateY('-100%').step();
   this.setData({
@@ -261,7 +337,7 @@ function closeModal() {
  */
 function closeUpdatePanel() {
   let animation = wx.createAnimation({
-    duration: 600
+    duration: 200
   });
   animation.translateY('100%').step();
   this.setData({
@@ -273,12 +349,18 @@ function closeUpdatePanel() {
  * 加载事项列表数据
  */
 function loadItemListData() {
-  const { year, month, date } = this.data.data.selected;
-  let _this = this;
-  DataService.findByDate(new Date(Date.parse([year, month, date].join('-')))).then((data) => {
-    _this.setData({ itemList: data || null });
-  });
+  const {
+    year,
+    month,
+    date
+  } = this.data.data.selected;
 
+  Data.findByDate(new Date(Date.parse([year, month, date].join('-'))))
+    .then((data) => {
+      this.setData({
+        itemList: data || null
+      });
+    });
 }
 
 /**
@@ -289,7 +371,9 @@ function resetItemListDataCheck() {
   for (let i = 0, len = data.length; i < len; i++) {
     data[i]['checked'] = false;
   }
-  this.setData({ itemList: data || null });
+  this.setData({
+    itemList: data || null
+  });
 }
 
 /**
@@ -355,7 +439,11 @@ function changeDate(targetDate) {
   if (tDay <= 35)
     afterDayCount += (42 - tDay); //6行7列 = 42
 
-  let selected = this.data.data['selected'] || { year: showYear, month: showMonth, date: showDate };
+  let selected = this.data.data['selected'] || {
+    year: showYear,
+    month: showMonth,
+    date: showDate
+  };
   let selectDateText = selected.year + '年' + formatNumber(selected.month) + '月' + formatNumber(selected.date) + '日';
 
   data = {
@@ -416,6 +504,9 @@ function changeDate(targetDate) {
   data.dates = dates;
 
 
-  this.setData({ data: data, pickerDateValue: showYear + '-' + showMonth });
+  this.setData({
+    data: data,
+    pickerDateValue: showYear + '-' + showMonth
+  });
   loadItemListData.call(this);
 }

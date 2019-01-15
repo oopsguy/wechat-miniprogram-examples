@@ -1,5 +1,3 @@
-@import "../../calendar/calendar.wxss";
-
 .wrapper {
   padding-bottom: 160rpx;
 }
@@ -243,4 +241,90 @@
 
 .updatePanel .footer .btn.primary:active {
   background: #d64343;
+}
+
+/* 日历 */
+
+.og-calendar {
+  background-color: #1d1d26;
+  color: #fff;
+  padding: 0 0 40rpx 0;
+}
+
+.og-calendar .header {
+  position: relative;
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 35rpx;
+  text-align: center;
+  background: #e14848;
+}
+
+.og-calendar .header .month-pre, .og-calendar .header .month-next {
+  position: absolute;
+  top: 0;
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.og-calendar .header .btn:active {
+  background: #d64343;
+}
+
+.og-calendar .header .month-pre {
+  left: 0;
+}
+
+.og-calendar .header .month-next {
+  right: 0;
+}
+
+.og-calendar .header .month-pre image, .og-calendar .header .month-next image {
+  margin-top: 30rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.og-calendar .week {
+  border-top: 2rpx solid #333;
+  border-bottom: 2rpx solid #333;
+  margin-bottom: 20rpx;
+}
+
+.og-calendar .date-title {
+  font-size: 40rpx;
+}
+
+.og-calendar .col {
+  width: 14.28571428571429%;
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  margin: 10rpx 0;
+}
+
+.og-calendar .col text {
+  display: block;
+  width: 75rpx;
+  height: 75rpx;
+  font-size: 40rpx;
+  line-height: 75rpx;
+  border: 2rpx solid transparent;
+}
+
+.og-calendar .body .col text {
+  border-radius: 50%;
+}
+
+.og-calendar .body .col.active text {
+  border-color: #e04343;
+}
+
+.og-calendar .body .col.old {
+  color: #7a7a7f;
+}
+
+.og-calendar .body .col.current text, .og-calendar .body .col text:active {
+  background-color: #e04343;
+  color: #fff;
 }

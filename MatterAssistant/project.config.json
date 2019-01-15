@@ -9,7 +9,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.94",
-	"appid": "touristappid",
+	"appid": "",
 	"projectname": "MatterAssistant",
 	"condition": {
 		"search": {

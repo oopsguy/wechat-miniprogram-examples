@@ -6,7 +6,7 @@
       </view>
       <view class="date-info">
         <picker mode="date" fields="month" value="{{pickerDateValue}}" bindchange="datePickerChangeEvent">
-          <text>{{data.showYear}}年{{data.showMonth > 9 ? data.showMonth : ('0' + data.showMonth)}}月</text>
+          <text class="date-title">{{data.showYear}}年{{data.showMonth > 9 ? data.showMonth : ('0' + data.showMonth)}}月</text>
         </picker>
       </view>
       <view class="btn month-next" bindtap="changeDateEvent" data-year="{{data.afterYear}}" data-month="{{data.afterMonth}}">
