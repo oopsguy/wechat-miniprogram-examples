@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/splash/splash",
     "pages/index/index",
     "pages/comment/comment",
     "pages/detail/detail",

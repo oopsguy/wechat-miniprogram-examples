@@ -1,13 +1,16 @@
-<view class="float-action" bindtap="ballClickEvent" style="opacity: {{ballOpacity}};bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent">
-</view>
+<!-- FloatAction 按钮 -->
+<view class="float-action" bindtap="ballClickEvent" style="opacity: {{ballOpacity}};bottom:{{ballBottom}}px;right:{{ballRight}}px;"></view>
+
+<!-- 全屏遮罩 -->
 <view class="slide-mask" style="display:{{maskDisplay}}" bindtap="slideCloseEvent"></view>
+
+<!-- 侧边栏 drawer -->
 <view class="slide-menu" style="right: {{slideRight}}px;width: {{slideWidth}}px;height:{{slideHeight}}px;" animation="{{slideAnimation}}">
-  <icon type="cancel" size="30" class="close-btn" color="#FFF" bindtap="slideCloseEvent" />
   <scroll-view scroll-y="true" style="height:100%;width:100%">
     <view class="header">
-      <view class="userinfo" bindtap="authorShowEvent">
-        <image src="{{avatarUrl}}" class="avatar"></image>
-        <text>{{nickName}}</text>
+      <view class="userinfo">
+        <open-data type="userAvatarUrl" class="avatar"></open-data>
+        <open-data type="userNickName"></open-data>
       </view>
       <view class="toolbar">
         <view class="item" bindtap="toCollectPage">
@@ -34,6 +37,8 @@
     <!--<text>首页</text>-->
 
     <!--</view>-->
+
+    <!-- 主题列表 -->
     <view class="slide-inner">
       <block wx:key="id" wx:for="{{themeData}}">
         <view class="menu-item" data-id="{{item.id}}" wx:if="{{themeId==item.id}}" style="background:rgba(0,0,0,0.10)" bindtap="toThemePage">
@@ -46,28 +51,14 @@
         </view>
       </block>
     </view>
+
   </scroll-view>
 </view>
+
 <scroll-view wx:if="{{themeId==0}}" scroll-y="true" style="height:100%;width:100%;display:{{pageShow}}" bindscrolltolower="loadingMoreEvent">
-  <swiper class="index-swiper" indicator-dots="true" interval="10000" autoplay="true">
-    <block wx:key="id" wx:for="{{sliderData}}">
-      <swiper-item data-id="{{item.id}}" bindtap="toDetailPage">
-        <image mode="aspectFill" src="{{item.image}}" style="width:100%" />
-        <view class="mask"></view>
-        <view class="desc">
-          <text>{{item.title}}</text>
-        </view>
-      </swiper-item>
-    </block>
-  </swiper>
-  <view class="main-list-header">
-    <view class="title">
-      <text>今日热文</text>
-    </view>
-    <view class="date">
-      <text>{{currentDateStr}}</text>
-    </view>
-  </view>
+  <!--首页轮播图 -->
+  <slider style="margin: 0" dataSource="{{sliderData}}" bindclick="toDetailPage"></slider>
+  <!-- 日报列表 -->
   <view class="common-list">
     <block wx:key="id" wx:for="{{pageData}}">
       <view class="list-item {{item.images[0] ? 'has-img': ''}}" wx:if="{{item.type != 3}}" data-id="{{item.id}}" bindtap="toDetailPage">
@@ -81,10 +72,13 @@
       </view>
     </block>
   </view>
+
+  <!-- 加载更多状态指示器 -->
   <view class="refresh-block" wx:if="{{loadingMore}}">
     <image animation="{{refreshAnimation}}" src="../../images/refresh.png"></image>
   </view>
 </scroll-view>
+
 <scroll-view wx:else scroll-y="true" style="height:100%;width:100%;display:{{pageShow}}">
   <view wx:if="{{themeId!=-1}}" class="header-cover">
     <image mode="aspectFill" style="height:100%" src="{{background}}"></image>
@@ -110,10 +104,3 @@
     </block>
   </view>
 </scroll-view>
-<loading hidden="{{!loading}}">
-  {{loadingMsg}}
-</loading>
-<modal class="modal" hidden="{{modalMsgHidden}}" no-cancel bindconfirm="modalMsgHiddenEvent">
-  <view style="text-align:center;color:#000;font-weight:bold"> Designed by Oopsguy. </view>
-  <view style="text-align:center;">https://github.com/oopsguy/WechatSmallApps</view>
-</modal>

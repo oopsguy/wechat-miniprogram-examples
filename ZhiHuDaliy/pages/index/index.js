@@ -1,19 +1,16 @@
-var utils = require('../../utils/util.js');
-var requests = require('../../requests/request.js');
+import utils from '../../utils/util';
+import requests from '../../requests/request';
 
-var weekdayStr = ['日', ' 一', '二', '三', '四', '五', '六'];
+const weekdayStr = ['日', ' 一', '二', '三', '四', '五', '六'];
 
 Page({
   data: {
     pageData: {}, //列表数据
     themeData: {}, //主题菜单数据
     sliderData: {}, //轮播图数据
-    currentDateStr: '',
     currentDate: new Date(),
     refreshAnimation: {}, //加载更多旋转动画数据
     loadingMore: false, //是否正在加载
-    avatarUrl: '', //当前开发者头像
-    nickName: '', //当前开发者名字
 
     loading: false,
     loadingMsg: '加载中...',
@@ -29,10 +26,9 @@ Page({
     slideAnimation: {},
 
     ballBottom: 20,
-    ballRight: 30,
+    ballRight: 20,
     ballOpacity: '.8',
-    modalMsgHidden: true,
-    themeId: 0,//当前主题id
+    themeId: 0, //当前主题id
 
     id: null,
     //pageShow: 'display',
@@ -45,10 +41,10 @@ Page({
   },
 
   //获取设备信息，屏幕的高度宽度
-  onLoad: function () {
+  onLoad() {
     var _this = this;
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         _this.setData({
           screenHeight: res.windowHeight,
           screenWidth: res.windowWidth,
@@ -58,15 +54,10 @@ Page({
         });
       }
     });
-
-    var app = getApp();
-    app.getUserInfo(function (data) {
-      _this.setData({ avatarUrl: data.avatarUrl, nickName: data.nickName });
-    });
   },
 
   //从详细页面返回时会刷新
-  onShow: function () {
+  onShow() {
     if (this.data.themeId == -1) {
       var pageData = wx.getStorageSync('pageData') || []
       this.setData({
@@ -75,32 +66,36 @@ Page({
     }
   },
 
-  onReady: function () {
-
-    var date = utils.getCurrentData();
-    this.setData({ currentDateStr: date.year + '.' + date.month + '.' + date.day + '　' + '星期' + weekdayStr[date.weekday] });
-
+  onReady() {
     var _this = this;
-    _this.setData({ loading: true });
+    _this.setData({
+      loading: true
+    });
     requests.getNewsLatest((data) => {
       data = utils.correctData(data);
       _this.setData({
         sliderData: data.top_stories,
         pageData: data.stories
       });
-      _this.setData({ pageShow: 'block' });
+      _this.setData({
+        pageShow: 'block'
+      });
     }, null, () => {
-      _this.setData({ loading: false });
+      _this.setData({
+        loading: false
+      });
     });
 
-    //获取主题日报列表
-    requests.getTheme((data) => {
-      _this.setData({ themeData: data.others });
-    });
+    // //获取主题日报列表
+    // requests.getTheme((data) => {
+    //   _this.setData({
+    //     themeData: data.others
+    //   });
+    // });
   },
 
   //列表加载更多
-  loadingMoreEvent: function (e) {
+  loadingMoreEvent(e) {
     if (this.data.loadingMore) return;
 
     console.log(this.data.currentDate);
@@ -108,7 +103,9 @@ Page({
     var _this = this;
     var pageData = [];
 
-    this.setData({ loadingMore: true });
+    this.setData({
+      loadingMore: true
+    });
     updateRefreshIcon.call(this);
     var y = date.getFullYear();
     var m = (date.getMonth() + 1);
@@ -120,39 +117,30 @@ Page({
       data = utils.correctData(data);
       console.log(data);
       pageData = _this.data.pageData;
-      pageData.push({ type: '3', title: ([y, m, d].join('.') + '  星期' + weekdayStr[date.getDay()]) });
+      pageData.push({
+        type: '3',
+        title: ([y, m, d].join('.') + '  星期' + weekdayStr[date.getDay()])
+      });
       pageData = pageData.concat(data.stories);
 
-      _this.setData({ currentDate: date, pageData: pageData });
+      _this.setData({
+        currentDate: date,
+        pageData: pageData
+      });
     }, null, () => {
-      _this.setData({ loadingMore: false });
+      _this.setData({
+        loadingMore: false
+      });
     });
   },
 
-  //浮动球移动事件
-  ballMoveEvent: function (e) {
-    var touchs = e.touches[0];
-    var pageX = touchs.pageX;
-    var pageY = touchs.pageY;
-    if (pageX < 25) return;
-    if (pageX > this.data.screenWidth - 25) return;
-    if (this.data.screenHeight - pageY <= 25) return;
-    if (pageY <= 25) return;
-    var x = this.data.screenWidth - pageX - 25;
-    var y = this.data.screenHeight - pageY - 25;
-    this.setData({
-      ballBottom: y,
-      ballRight: x
-    });
-  },
-
-  toDetailPage: function (e) {
-    var id = e.currentTarget.dataset.id;
+  toDetailPage(e) {
+    var id = e.detail.data.id;
     wx.navigateTo({
       url: '../detail/detail?id=' + id
     });
   },
-  toSettingPage: function () {
+  toSettingPage() {
     wx.navigateTo({
       url: '../setting/setting'
     });
@@ -163,9 +151,12 @@ Page({
   //  });
   //},
 
-  toHomePage: function (e) {
+  toHomePage(e) {
     var _this = this;
-    _this.setData({ loading: true, themeId: 0 });
+    _this.setData({
+      loading: true,
+      themeId: 0
+    });
     console.log('themeId', _this.data.themeId);
     requests.getNewsLatest((data) => {
       data = utils.correctData(data);
@@ -174,16 +165,23 @@ Page({
         sliderData: data.top_stories,
         pageData: data.stories
       });
-      slideDown.call(this);
-      _this.setData({ pageShow: 'block' });
+      slideSwitch.call(this, false);
+      _this.setData({
+        pageShow: 'block'
+      });
     }, null, () => {
-      _this.setData({ loading: false });
+      _this.setData({
+        loading: false
+      });
     });
   },
 
-  toThemePage: function (e) {
+  toThemePage(e) {
     var _this = this;
-    _this.setData({ loading: true, themeId: e.currentTarget.dataset.id });
+    _this.setData({
+      loading: true,
+      themeId: e.currentTarget.dataset.id
+    });
     requests.getThemeStories(_this.data.themeId, (data) => {
       data['background'] = utils.fixImgPrefix(data['background']);
       for (var i = 0; i < data.editors.length; i++) {
@@ -196,16 +194,20 @@ Page({
         description: data.description,
         editorData: data.editors
       });
-      slideDown.call(this);
+      slideSwitch.call(this, false);
       //wx.setNavigationBarTitle( { title: data.name }); //设置标题
     }, null, () => {
-      _this.setData({ loading: false });
+      _this.setData({
+        loading: false
+      });
     });
   },
 
-  toCollectPage: function () {
+  toCollectPage() {
     var _this = this;
-    _this.setData({ themeId: -1 });
+    _this.setData({
+      themeId: -1
+    });
     var pageData = wx.getStorageSync('pageData') || []
     _this.setData({
       themeId: -1,
@@ -216,7 +218,7 @@ Page({
     //  background: data.background,
     //  description: data.description,
     //  editorData: data.editors
-    slideDown.call(this);
+    slideSwitch.call(this, false);
     //wx.setNavigationBarTitle( { title: data.name }); //设置标题
 
   },
@@ -229,52 +231,33 @@ Page({
   //},
 
   //浮动球点击 侧栏展开
-  ballClickEvent: function () {
-    slideUp.call(this);
+  ballClickEvent() {
+    slideSwitch.call(this, true);
   },
 
   //遮罩点击  侧栏关闭
-  slideCloseEvent: function () {
-    slideDown.call(this);
+  slideCloseEvent() {
+    slideSwitch.call(this, false);
   },
 
-  authorShowEvent: function () {
-    this.setData({ modalMsgHidden: false });
-  },
-
-  modalMsgHiddenEvent: function () {
-    this.setData({ modalMsgHidden: true });
-  },
-
-  onPullDownRefreash: function (e) {
+  onPullDownRefreash(e) {
     console.log(1);
   }
 });
 
-//侧栏展开
-function slideUp() {
-  var animation = wx.createAnimation({
-    duration: 600
+//侧栏 drawer 展开收缩
+function slideSwitch(isShow) {
+  let animation = wx.createAnimation({
+    duration: 200
   });
-  this.setData({ maskDisplay: 'block' });
-  animation.translateX('100%').step();
+  this.setData({
+    maskDisplay: isShow ? 'block' : 'none'
+  });
+  animation.translateX(isShow ? '100%' : '-100%').step();
   this.setData({
     slideAnimation: animation.export()
   });
 }
-
-//侧栏关闭
-function slideDown() {
-  var animation = wx.createAnimation({
-    duration: 800
-  });
-  animation.translateX('-100%').step();
-  this.setData({
-    slideAnimation: animation.export()
-  });
-  this.setData({ maskDisplay: 'none' });
-}
-
 
 /**
  * 旋转上拉加载图标
@@ -287,7 +270,7 @@ function updateRefreshIcon() {
     duration: 1000
   });
 
-  var timer = setInterval(function () {
+  var timer = setInterval(function() {
     if (!_this.data.loadingMore)
       clearInterval(timer);
     animation.rotateZ(deg).step();

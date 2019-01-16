@@ -1,18 +1,3 @@
-.main-list-header .title, .main-list-header .date {
-  display: inline-block;
-  color: #fff;
-  font-size: 30rpx;
-  padding: 25rpx;
-}
-
-.main-list-header .title {
-  background: #20b4f0;
-}
-
-.main-list-header .date {
-  background: #019dd6;
-}
-
 .list-item {
   width: 90%;
   margin: 30rpx 2%;
@@ -131,13 +116,6 @@
 
 .slide-menu .home {
   color: #019dd6;
-}
-
-.slide-menu .close-btn {
-  position: absolute;
-  top: 20rpx;
-  right: 40rpx;
-  z-index: 1000;
 }
 
 /*合并theme的*/

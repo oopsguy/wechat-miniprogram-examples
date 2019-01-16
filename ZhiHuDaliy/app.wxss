@@ -4,40 +4,6 @@ page {
   font-family: 'microsoft yahei ui';
 }
 
-swiper.index-swiper {
-  position: relative;
-  height: 450rpx;
-}
-
-swiper .mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-swiper image {
-  display: block;
-  width: 100%;
-}
-
-swiper .desc {
-  box-sizing: border-box;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  padding: 20rpx 20rpx 50rpx 20rpx;
-  background: rgba(0, 0, 0, 0.3);
-  color: #fff;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .float-action {
   position: absolute;
   bottom: 20px;
