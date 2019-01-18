@@ -3,48 +3,11 @@
     <text>{{longCommentCount}}条长评</text>
   </view>
 
-  <view class="common-list">
-    <block wx:for="{{longCommentData}}" wx:key="id">
-      <view class="list-item has-img" data-id="{{item.id}}">
-        <view class="content">
-          <view class="header">
-            <text class="title">{{item.author}}</text>
-            <image class="vote" src="../../images/thumb_up.png" />
-          </view>
-          <text class="body">{{item.content}}</text>
-          <text class="bottom">{{item.time}}</text>
-        </view>
-        <image src="{{item.avatar}}" class="cover" />
-      </view>
-    </block>
-  </view>
+  <clist dataSource="{{longCommentData}}" voteIcon="../../images/like-fill-gay.png"></clist>
 
   <view class="headline" bindtap="loadShortCommentEvent">
     <text>{{shortCommentCount}}条短评</text>
   </view>
 
-  <view class="common-list">
-    <block wx:for="{{shortCommentData}}" wx:key="id">
-      <view class="list-item has-img" data-id="{{item.id}}">
-        <view class="content">
-          <view class="header">
-            <text class="title">{{item.author}}</text>
-            <image class="vote" src="../../images/thumb_up.png" />
-          </view>
-          <text class="body">{{item.content}}</text>
-          <text class="bottom">{{item.time}}</text>
-        </view>
-        <image src="{{item.avatar}}" class="cover" />
-      </view>
-    </block>
-  </view>
-
+  <clist dataSource="{{shortCommentData}}" voteIcon="../../images/like-fill-gay.png"></clist>
 </view>
-
-<toast hidden="{{toastHidden}}" duration="2000" bindchange="toastChangeEvent">
-  {{toastMsg}}
-</toast>
-
-<loading hidden="{{!loading}}">
-  {{loadingMsg}}
-</loading>

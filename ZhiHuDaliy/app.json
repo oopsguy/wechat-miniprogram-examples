@@ -1,9 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/comment/comment",
     "pages/detail/detail",
-    "pages/setting/setting"
+    "pages/comment/comment",
+    "pages/setting/setting",
+    "pages/favorite/favorite",
+    "pages/webview/webview"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -9,7 +9,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.94",
+	"libVersion": "2.5.0",
 	"appid": "wx095605c716cb7b14",
 	"projectname": "ZhiHuDaliy",
 	"condition": {

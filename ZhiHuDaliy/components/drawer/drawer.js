@@ -18,18 +18,16 @@ Component({
     animation: {}
   },
 
-  lifetimes: {
-    attached() {
-      wx.getSystemInfo({
-        success: (res) => {
-          this.setData({
-            drawerHeight: res.windowHeight,
-            drawerRight: (this.data.right && this.data.right > 0) ? this.data.right : res.windowWidth,
-            drawerWidth: (this.data.width && this.data.width > 0) ? this.data.width : res.windowWidth * 0.7
-          });
-        }
-      });
-    }
+  attached() {
+    wx.getSystemInfo({
+      success: (res) => {
+        this.setData({
+          drawerHeight: res.windowHeight,
+          drawerRight: (this.data.right && this.data.right > 0) ? this.data.right : res.windowWidth,
+          drawerWidth: (this.data.width && this.data.width > 0) ? this.data.width : res.windowWidth * 0.7
+        });
+      }
+    });
   },
 
   methods: {
@@ -41,6 +39,10 @@ Component({
     },
     hide() {
       this.drawerSwitch(false);
+    },
+    toggle() {
+      let show = this.data.maskDisplay == 'block' ? true : false;
+      this.drawerSwitch(!show);
     },
     drawerSwitch(isShow) {
       let animation = wx.createAnimation({

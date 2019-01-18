@@ -1,238 +1,148 @@
-import utils from '../../utils/util';
-import requests from '../../requests/request';
-
+import Utils from '../../utils/util';
+import Api from '../../utils/api';
 const weekdayStr = ['日', ' 一', '二', '三', '四', '五', '六'];
 
 Page({
   data: {
     pageData: {}, //列表数据
-    themeData: {}, //主题菜单数据
-    sliderData: {}, //轮播图数据
-    currentDate: new Date(),
-    refreshAnimation: {}, //加载更多旋转动画数据
-    loadingMore: false, //是否正在加载
-
-    loading: false,
-    loadingMsg: '加载中...',
-    pageShow: 'none',
-
-    maskDisplay: 'none',
-    slideHeight: 0,
-    slideRight: 0,
-    slideWidth: 0,
-    slideDisplay: 'block',
-    screenHeight: 0,
-    screenWidth: 0,
-    slideAnimation: {},
-
-    ballBottom: 20,
-    ballRight: 20,
-    ballOpacity: '.8',
-    themeId: 0, //当前主题id
-
-    id: null,
-    //pageShow: 'display',
-    background: '',
-    //pageData: [], //列表数据源
-    editorData: [], //主编数据
-    description: '',
-    //loading: false,
-    //loadingMsg: '数据加载中...'
+    siderData: {}, //轮播图数据
+    currentDate: null,
+    isDrawerShow: false
   },
 
-  //获取设备信息，屏幕的高度宽度
-  onLoad() {
-    var _this = this;
-    wx.getSystemInfo({
-      success: function(res) {
-        _this.setData({
-          screenHeight: res.windowHeight,
-          screenWidth: res.windowWidth,
-          slideHeight: res.windowHeight,
-          slideRight: res.windowWidth,
-          slideWidth: res.windowWidth * 0.7
-        });
-      }
+  onReady() {
+    wx.showLoading({
+      title: '加载中',
+    });
+    Api.getNewsLatest().then(data => {
+      data = Utils.correctData(data);
+      let tData = handleStories(data.stories);
+      tData.unshift({
+        isLabel: true,
+        title: '今日热文'
+      });
+      this.setData({
+        siderData: data.top_stories,
+        pageData: tData,
+        currentDate: new Date()
+      });
+      wx.hideLoading();
+    }).catch((err) => {
+      console.log(err)
+      wx.hideLoading();
+      wx.showToast({
+        title: '数据加载异常，下拉重新刷新',
+        icon: 'none',
+        duration: 5000
+      });
     });
   },
 
   //从详细页面返回时会刷新
   onShow() {
-    if (this.data.themeId == -1) {
-      var pageData = wx.getStorageSync('pageData') || []
-      this.setData({
-        pageData: pageData
-      })
+    if (!this.data.pageData) {
+      wx.getStorage({
+        key: 'pageData',
+        success: (res) => {
+          this.setData({
+            pageData: res.data
+          });
+        }
+      });
     }
+
   },
 
-  onReady() {
-    var _this = this;
-    _this.setData({
-      loading: true
+  onHide() {
+    wx.setStorage({
+      key: 'pageData',
+      data: this.data.pageData
     });
-    requests.getNewsLatest((data) => {
-      data = utils.correctData(data);
-      _this.setData({
-        sliderData: data.top_stories,
-        pageData: data.stories
-      });
-      _this.setData({
-        pageShow: 'block'
-      });
-    }, null, () => {
-      _this.setData({
-        loading: false
-      });
-    });
+  },
 
-    // //获取主题日报列表
-    // requests.getTheme((data) => {
-    //   _this.setData({
-    //     themeData: data.others
-    //   });
-    // });
+  onDrawerChange(e) {
+    this.setData({
+      isDrawerShow: e.detail.show
+    });
   },
 
   //列表加载更多
   loadingMoreEvent(e) {
-    if (this.data.loadingMore) return;
-
-    console.log(this.data.currentDate);
-    var date = new Date(Date.parse(this.data.currentDate) - 1000 * 60 * 60 * 24);
-    var _this = this;
-    var pageData = [];
-
-    this.setData({
-      loadingMore: true
+    wx.showLoading({
+      title: '加载中',
     });
-    updateRefreshIcon.call(this);
-    var y = date.getFullYear();
-    var m = (date.getMonth() + 1);
-    var d = date.getDate();
+    console.log(this.data.currentDate);
+    let date = new Date(Date.parse(this.data.currentDate) - 1000 * 60 * 60 * 24);
+    let pageData = [];
+    let y = date.getFullYear();
+    let m = (date.getMonth() + 1);
+    let d = date.getDate();
     m = m > 9 ? m : '0' + m;
     d = d > 9 ? d : '0' + d;
-    var dateStr = [y, m, d].join('');
-    requests.getBeforeNews(dateStr, (data) => {
-      data = utils.correctData(data);
-      console.log(data);
-      pageData = _this.data.pageData;
+    let dateStr = [y, m, d].join('');
+    Api.getBeforeNews(dateStr).then(data => {
+      data = Utils.correctData(data);
+      pageData = this.data.pageData;
       pageData.push({
-        type: '3',
+        isLabel: true,
         title: ([y, m, d].join('.') + '  星期' + weekdayStr[date.getDay()])
       });
-      pageData = pageData.concat(data.stories);
-
-      _this.setData({
+      pageData = pageData.concat(handleStories(data.stories));
+      this.setData({
         currentDate: date,
         pageData: pageData
       });
-    }, null, () => {
-      _this.setData({
-        loadingMore: false
+      wx.hideLoading();
+    }).catch(() => {
+      wx.hideLoading();
+      wx.showToast({
+        title: '数据加载失败',
+        icon: 'none',
+        duration: 2000
       });
     });
   },
 
   toDetailPage(e) {
-    var id = e.detail.data.id;
+    const id = e.detail.data.id;
     wx.navigateTo({
       url: '../detail/detail?id=' + id
     });
   },
+
   toSettingPage() {
     wx.navigateTo({
       url: '../setting/setting'
     });
   },
-  //toCollectPage: function() {
-  //  wx.redirectTo( {
-  //    url: '../collect/collect'
-  //  });
-  //},
+
+  toCollectPage() {
+    slideSwitch.call(this, false);
+    wx.navigateTo({
+      url: '../favorite/favorite'
+    });
+  },
 
   toHomePage(e) {
-    var _this = this;
-    _this.setData({
-      loading: true,
-      themeId: 0
-    });
-    console.log('themeId', _this.data.themeId);
-    requests.getNewsLatest((data) => {
-      data = utils.correctData(data);
-      console.log(data);
-      _this.setData({
-        sliderData: data.top_stories,
+    Api.getNewsLatest().then(data => {
+      data = Utils.correctData(data);
+      this.setData({
+        siderData: data.top_stories,
         pageData: data.stories
       });
       slideSwitch.call(this, false);
-      _this.setData({
-        pageShow: 'block'
-      });
-    }, null, () => {
-      _this.setData({
-        loading: false
-      });
-    });
-  },
-
-  toThemePage(e) {
-    var _this = this;
-    _this.setData({
-      loading: true,
-      themeId: e.currentTarget.dataset.id
-    });
-    requests.getThemeStories(_this.data.themeId, (data) => {
-      data['background'] = utils.fixImgPrefix(data['background']);
-      for (var i = 0; i < data.editors.length; i++) {
-        data.editors[i]['avatar'] = utils.fixImgPrefix(data.editors[i]['avatar']);
-      }
-      data = utils.correctData(data);
-      _this.setData({
-        pageData: data.stories,
-        background: data.background,
-        description: data.description,
-        editorData: data.editors
-      });
-      slideSwitch.call(this, false);
-      //wx.setNavigationBarTitle( { title: data.name }); //设置标题
-    }, null, () => {
-      _this.setData({
-        loading: false
+    }).catch(() => {
+      wx.showToast({
+        title: '数据加载失败',
+        icon: 'none',
+        duration: 2000
       });
     });
   },
-
-  toCollectPage() {
-    var _this = this;
-    _this.setData({
-      themeId: -1
-    });
-    var pageData = wx.getStorageSync('pageData') || []
-    _this.setData({
-      themeId: -1,
-      pageData: pageData
-    })
-    //_this.setData( {
-    //  pageData: data.stories,
-    //  background: data.background,
-    //  description: data.description,
-    //  editorData: data.editors
-    slideSwitch.call(this, false);
-    //wx.setNavigationBarTitle( { title: data.name }); //设置标题
-
-  },
-  //toThemePage: function( e ) {
-  //  var themeId = e.currentTarget.dataset.id;
-  //  console.log( 'themeId', themeId );
-  //  wx.navigateTo( {
-  //    url: '../theme/theme?themeId=' + themeId
-  //  });
-  //},
 
   //浮动球点击 侧栏展开
   ballClickEvent() {
-    slideSwitch.call(this, true);
+    slideSwitch.call(this, !this.data.isDrawerShow);
   },
 
   //遮罩点击  侧栏关闭
@@ -245,38 +155,22 @@ Page({
   }
 });
 
-//侧栏 drawer 展开收缩
-function slideSwitch(isShow) {
-  let animation = wx.createAnimation({
-    duration: 200
-  });
-  this.setData({
-    maskDisplay: isShow ? 'block' : 'none'
-  });
-  animation.translateX(isShow ? '100%' : '-100%').step();
-  this.setData({
-    slideAnimation: animation.export()
-  });
+function handleStories(stories) {
+  if (!stories) {
+    return stories;
+  }
+  for (let i = 0; i < stories.length; i++) {
+    if (stories[i].images) {
+      stories[i].image = stories[i].images[0];
+    }
+  }
+  return stories
 }
 
-/**
- * 旋转上拉加载图标
- */
-function updateRefreshIcon() {
-  var deg = 360;
-  var _this = this;
-
-  var animation = wx.createAnimation({
-    duration: 1000
+//侧栏 drawer 展开收缩
+function slideSwitch(isShow) {
+  this.setData({
+    isDrawerShow: isShow
   });
-
-  var timer = setInterval(function() {
-    if (!_this.data.loadingMore)
-      clearInterval(timer);
-    animation.rotateZ(deg).step();
-    deg += 360;
-    _this.setData({
-      refreshAnimation: animation.export()
-    })
-  }, 1000);
+  this.selectComponent('#drawer').drawerSwitch(isShow);
 }

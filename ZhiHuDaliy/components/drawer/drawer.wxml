@@ -1,9 +1,7 @@
-<view>
-  <!-- 全屏遮罩 -->
-  <view class="drawer-mask" style="display:{{maskDisplay}}" bindtap="onMaskTap"></view>
-  <view class="drawer-menu" style="right: {{drawerRight}}px;width: {{drawerWidth}}px;height:{{drawerHeight}}px;" animation="{{animation}}">
-    <scroll-view scroll-y="true" style="height:100%;width:100%">
-      <slot></slot>
-    </scroll-view>
-  </view>
+<!-- 全屏遮罩 -->
+<view class="drawer-mask" style="display:{{maskDisplay}}" bindtap="onMaskTap"></view>
+<view class="drawer-menu" style="right: {{drawerRight}}px;width: {{drawerWidth}}px;height:{{drawerHeight}}px;" animation="{{animation}}">
+  <scroll-view scroll-y="true" style="height:100%;width:100%">
+    <slot></slot>
+  </scroll-view>
 </view>

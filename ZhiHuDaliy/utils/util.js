@@ -1,21 +1,11 @@
-var HtmlParser = require('htmlParseUtil.js');
+const HtmlParser = require('htmlParseUtil.js');
 
-String.prototype.trim = function () {
+String.prototype.trim = function() {
   return this.replace(/(^\s*)|(\s*$)/g, '');
 }
 
-String.prototype.isEmpty = function () {
+String.prototype.isEmpty = function() {
   return this.trim() == '';
-}
-
-function formatTime(date) {
-  var year = date.getFullYear()
-  var month = date.getMonth() + 1
-  var day = date.getDate()
-  var hour = date.getHours()
-  var minute = date.getMinutes()
-  var second = date.getSeconds()
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
 function formatNumber(n) {
@@ -28,9 +18,9 @@ function formatNumber(n) {
  * @returns {object}
  */
 function getCurrentData() {
-  var date = new Date();
+  let date = new Date();
   return {
-    date: new Date(),
+    date: date,
     year: date.getFullYear(),
     month: date.getMonth() + 1,
     day: date.getDate(),
@@ -54,13 +44,13 @@ function $(html) {
  * @return {object} 解析后的对象
  */
 function parseStory(html, isDecode) {
-  var questionArr = $(html).tag('div').attr('class', 'question').match();
-  var stories = [];
-  var $story;
+  let questionArr = $(html).tag('div').attr('class', 'question').match();
+  let stories = [];
+  let $story;
   if (questionArr) {
-    for (var i = 0, len = questionArr.length; i < len; i++) {
+    for (let i = 0, len = questionArr.length; i < len; i++) {
       $story = $(questionArr[i]);
-      var mavatar = getArrayContent(getArrayContent($story.tag('div').attr('class', 'meta').match()).jhe_ma('img', 'src'));
+      let mavatar = getArrayContent(getArrayContent($story.tag('div').attr('class', 'meta').match()).jhe_ma('img', 'src'));
       mavatar = fixImgPrefix(mavatar);
       stories.push({
         index: i,
@@ -83,11 +73,11 @@ function parseStory(html, isDecode) {
  * @returb {object} 文章内容对象
  */
 function parseStoryContent($story, isDecode) {
-  var content = [];
-  var ps = $story.tag('p').match();
-  var p, strong, img, blockquote, em;
+  let content = [];
+  let ps = $story.tag('p').match();
+  let p, strong, img, blockquote, em;
   if (ps) {
-    for (var i = 0, len = ps.length; i < len; i++) {
+    for (let i = 0, len = ps.length; i < len; i++) {
       p = transferSign(ps[i]); //获取<p>的内容 ,并将特殊符号转义
       if (!p || p.isEmpty())
         continue;
@@ -99,27 +89,43 @@ function parseStoryContent($story, isDecode) {
 
       if (!img.isEmpty()) { //获取图片
         img = fixImgPrefix(img);
-        content.push({ index: i, type: 'img', value: img });
-      }
-      else if (isOnly(p, strong)) { //获取加粗段落<p><strong>...</strong></p>
+        content.push({
+          index: i,
+          type: 'img',
+          value: img
+        });
+      } else if (isOnly(p, strong)) { //获取加粗段落<p><strong>...</strong></p>
         strong = decodeHtml(strong, isDecode);
         if (!strong.isEmpty())
-          content.push({ index: i, type: 'pstrong', value: strong });
-      }
-      else if (isOnly(p, em)) { //获取强调段落 <p><em>...</em></p>
+          content.push({
+            index: i,
+            type: 'pstrong',
+            value: strong
+          });
+      } else if (isOnly(p, em)) { //获取强调段落 <p><em>...</em></p>
         em = decodeHtml(em, isDecode);
         if (!em.isEmpty())
-          content.push({ index: i, type: 'pem', value: em });
-      }
-      else if (isOnly(p, blockquote)) { //获取引用块 <p><blockquote>...</blockquote></p>
+          content.push({
+            index: i,
+            type: 'pem',
+            value: em
+          });
+      } else if (isOnly(p, blockquote)) { //获取引用块 <p><blockquote>...</blockquote></p>
         blockquote = decodeHtml(blockquote, isDecode);
         if (!blockquote.isEmpty())
-          content.push({ index: i, type: 'blockquote', value: blockquote });
-      }
-      else { //其他类型 归类为普通段落 ....太累了 不想解析了T_T
+          content.push({
+            index: i,
+            type: 'blockquote',
+            value: blockquote
+          });
+      } else { //其他类型 归类为普通段落 ....太累了 不想解析了T_T
         p = decodeHtml(p, isDecode);
         if (!p.isEmpty())
-          content.push({ index: i, type: 'p', value: p });
+          content.push({
+            index: i,
+            type: 'p',
+            value: p
+          });
       }
     }
   }
@@ -145,8 +151,8 @@ function decodeHtml(value, isDecode) {
  * 解析段落的unicode字符，主题日报中的内容又很多是编码过的
  */
 function decodeUnicode(str) {
-  var ret = '';
-  var splits = str.split(';');
+  let ret = '';
+  let splits = str.split(';');
   for (let i = 0; i < splits.length; i++) {
     ret += spliteDecode(splits[i]);
   }
@@ -157,10 +163,10 @@ function decodeUnicode(str) {
  * 解析单个unidecode字符
  */
 function spliteDecode(value) {
-  var target = value.match(/\\u\d+/g);
+  let target = value.match(/\\u\d+/g);
   if (target && target.length > 0) { //解析类似  "7.1 \u20998" 参杂其他字符
     target = target[0];
-    var temp = value.replace(target, '{{@}}');
+    let temp = value.replace(target, '{{@}}');
     target = target.replace('\\u', '');
     target = String.fromCharCode(parseInt(target));
     return temp.replace("{{@}}", target);
@@ -201,17 +207,17 @@ function isFunction(val) {
  */
 function correctData(data) {
   if (("top_stories" in data)) {
-    var top_stories = data.top_stories;
-    for (var i = 0; i < top_stories.length; i++) {
+    let top_stories = data.top_stories;
+    for (let i = 0; i < top_stories.length; i++) {
       top_stories[i].image = fixImgPrefix(top_stories[i].image);
     }
     data.top_stories = top_stories;
   }
 
-  var stories = data.stories;
-  for (var i = 0; i < stories.length; i++) {
+  let stories = data.stories;
+  for (let i = 0; i < stories.length; i++) {
     if (("images" in stories[i])) {
-      var s = stories[i].images[0];
+      let s = stories[i].images[0];
       s = fixImgPrefix(s);
       stories[i].images[0] = s;
     }
@@ -252,7 +258,6 @@ function fixImgPrefix(imgUrl) {
 }
 
 module.exports = {
-  formatTime: formatTime,
   getCurrentData: getCurrentData,
   isFunction: isFunction,
   parseStory: parseStory,
@@ -260,4 +265,3 @@ module.exports = {
   transferSign: transferSign,
   fixImgPrefix: fixImgPrefix
 }
-

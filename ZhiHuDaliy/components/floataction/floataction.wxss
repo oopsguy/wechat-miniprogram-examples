@@ -1,5 +1,8 @@
 .float-action {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
   bottom: 20px;
   right: 30px;
   width: 50px;
@@ -7,5 +10,5 @@
   border-radius: 50%;
   box-shadow: 2px 2px 10px #aaa;
   background: #1891d4;
-  z-index: 100;
+  z-index: 10000;
 }

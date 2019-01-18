@@ -1,0 +1,18 @@
+<view class="common-list">
+  <block wx:for="{{dataSource}}" wx:key="id">
+    <view class="list-item" data-id="{{item.id}}">
+      <view class="content">
+        <view class="header">
+          <text class="title">{{item.author}}</text>
+          <view class="vote">
+            <image  wx:if="{{voteIcon}}" src="{{voteIcon}}" />
+            <text style="color: #AAA;font-size: 30rpx"> {{item.likes}}</text>
+          </view>
+        </view>
+        <text class="body">{{item.content}}</text>
+        <text class="bottom">{{item.time}}</text>
+      </view>
+      <image src="{{item.avatar}}" class="cover" />
+    </view>
+  </block>
+</view>

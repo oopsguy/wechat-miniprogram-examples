@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "floataction": "../../components/floataction/floataction",
+    "nlist": "../../components/nlist/nlist"
+  },
+  "navigationBarTitleText": "我的收藏"
+}

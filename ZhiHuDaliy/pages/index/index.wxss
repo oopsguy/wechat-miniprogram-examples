@@ -1,36 +1,4 @@
-.list-item {
-  width: 90%;
-  margin: 30rpx 2%;
-  padding: 5px 10px 6px;
-  border-radius: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-/*slide-menu*/
-
-.slide-mask {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 800;
-}
-
-.slide-menu {
-  position: fixed;
-  top: 0;
-  background: #fff;
-  z-index: 900;
-}
-
-/*.slide-menu .slide-inner {
-  padding: 40rpx;
-}*/
-
-.slide-menu .header {
+.side-menu .header {
   background: #019dd6;
   height: 200rpx;
   color: #fff;
@@ -59,31 +27,32 @@
 .toolbar {
   height: 100rpx;
   padding-top: 25rpx;
-  line-height: 75rpx;
+  line-height: 100rpx;
+  padding-left: 10rpx;
+  display: flex;
+  justify-content: space-between;
 }
 
 .toolbar .item {
-  width: 50%;
   display: inline-block;
   overflow: hidden;
-  text-align: center;
 }
 
 .toolbar .item text {
   display: inline-block;
-  font-size: 30rpx;
+  font-size: 32rpx;
 }
 
 .toolbar .item image {
   display: inline-block;
   position: relative;
   top: 10rpx;
-  margin-right: 10rpx;
+  margin-right: 20rpx;
   height: 50rpx;
   width: 50rpx;
 }
 
-.slide-menu .menu-item {
+.side-menu .menu-item {
   position: relative;
   height: 100rpx;
   line-height: 100rpx;
@@ -91,11 +60,11 @@
   font-size: 35rpx;
 }
 
-.slide-menu .menu-item:active {
+.side-menu .menu-item:active {
   background: #fafafa;
 }
 
-.slide-menu .menu-item image {
+.side-menu .menu-item image {
   position: absolute;
   top: 25rpx;
   right: 40rpx;
@@ -106,29 +75,19 @@
 .home-icon {
   position: absolute;
   top: 25rpx;
-  left: 40rpx;
+  left: 50rpx;
 }
 
 .home-text {
   position: absolute;
-  left: 100rpx;
+  left: 120rpx;
 }
 
-.slide-menu .home {
+.side-menu .home {
   color: #019dd6;
 }
 
 /*合并theme的*/
-
-.list-item {
-  width: 90%;
-  margin: 30rpx 2%;
-  padding: 5px 10px 6px;
-  border-radius: 5rpx;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
 .header-cover {
   position: relative;
   height: 500rpx;

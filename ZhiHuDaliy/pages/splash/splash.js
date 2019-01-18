@@ -1,5 +1,5 @@
-var requests = require('../../requests/request.js');
-var util = require('../../utils/util.js');
+import Utils from '../../utils/util';
+import Api from '../../utils/api';
 
 Page({
   data: {

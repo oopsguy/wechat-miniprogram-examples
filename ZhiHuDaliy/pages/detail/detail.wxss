@@ -45,7 +45,6 @@ page {
 }
 
 /*article*/
-
 .article {
   padding: 40rpx;
   margin-bottom: 20rpx;
@@ -79,26 +78,14 @@ page {
   color: #6a6a6a;
 }
 
-/*.author-mark{*/
-
-/*width: 60rpx;*/
-
-/*height: 60rpx;*/
-
-/*}*/
-
 .author-mark {
-  position: relative;
-  bottom: 0px;
   padding: 0px;
   margin: 0px;
-  font-size: 10px;
   height: 60rpx;
-  overflow: hidden; /*自动隐藏文字*/
-  text-overflow: ellipsis; /*文字隐藏后添加省略号*/
-  white-space: nowrap; /*强制不换行*/
-  color: #69f;
-  width: 300rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 350rpx;
 }
 
 .article .author-info text {
@@ -160,12 +147,14 @@ page {
   left: 0;
   right: 0;
   height: 100rpx;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #EEE;
   background: #fff;
 }
 
 .toolbar .inner {
   padding: 0 20rpx;
+  display: flex;
+  justify-content: space-between;
 }
 
 .toolbar .item {
@@ -181,11 +170,11 @@ page {
   display: block;
   top: 20rpx;
   right: 50%;
-  margin-right: -30rpx;
+  margin-right: -40rpx;
   background: #019dd6;
   color: #fff;
-  width: 20rpx;
-  height: 20rpx;
+  padding: 5rpx;
+  font-size: 16rpx;
   border-radius: 20rpx;
 }
 

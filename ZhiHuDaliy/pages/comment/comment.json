@@ -1,3 +1,6 @@
 {
-    "navigationBarTitleText": "评论"
+    "navigationBarTitleText": "评论",
+    "usingComponents": {
+      "clist": "../../components/clist/clist"
+    }
 }
