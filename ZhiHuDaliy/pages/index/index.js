@@ -28,7 +28,6 @@ Page({
       });
       wx.hideLoading();
     }).catch((err) => {
-      console.log(err)
       wx.hideLoading();
       wx.showToast({
         title: '数据加载异常，下拉重新刷新',
@@ -36,6 +35,11 @@ Page({
         duration: 5000
       });
     });
+  },
+
+  // 下拉刷新
+  onPullDownRefresh() {
+    this.onReady();
   },
 
   //从详细页面返回时会刷新
@@ -50,7 +54,6 @@ Page({
         }
       });
     }
-
   },
 
   onHide() {
@@ -71,7 +74,6 @@ Page({
     wx.showLoading({
       title: '加载中',
     });
-    console.log(this.data.currentDate);
     let date = new Date(Date.parse(this.data.currentDate) - 1000 * 60 * 60 * 24);
     let pageData = [];
     let y = date.getFullYear();
