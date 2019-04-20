@@ -29,11 +29,7 @@ app.use('/v2/book/:id', function (req, resp) {
 
 function proxy(url, req, resp) {
   request(url, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      resp.json(JSON.parse(response.body));
-    } else {
-      resp.status(response.statusCode).json({});
-    }
+    resp.status(response.statusCode).send(response.body);
   });
 }
 
