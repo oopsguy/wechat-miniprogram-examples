@@ -1,0 +1,5 @@
+<!-- FloatAction 按钮 -->
+<view class="float-action" bindtap='click' 
+style="opacity: {{ballOpacity}};bottom:{{ballBottom}}px;right:{{ballRight}}px;">
+  <slot></slot>
+</view>

@@ -1,0 +1,188 @@
+page {
+  background: #fafafa;
+}
+
+.header-cover {
+  position: relative;
+  height: 500rpx;
+  overflow: hidden;
+}
+
+.header-cover image {
+  width: 100%;
+}
+
+.header-cover .mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.header-cover .desc {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0 20rpx 60rpx 20rpx;
+  font-size: 40rpx;
+  color: #fff;
+  z-index: 10;
+}
+
+.header-cover .cover-source {
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  font-size: 30rpx;
+  color: #fff;
+}
+
+.black-desc {
+  padding: 50rpx;
+  font-weight: bold;
+}
+
+/*article*/
+.article {
+  padding: 40rpx;
+  margin-bottom: 20rpx;
+  background: #fff;
+}
+
+.article .title {
+  padding-bottom: 40rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.article .author-info {
+  overflow: hidden;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 35rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 20rpx;
+}
+
+.article .author-info .avatar {
+  float: left;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 5rpx;
+}
+
+.article .author-info .author-mark {
+  color: #6a6a6a;
+}
+
+.author-mark {
+  padding: 0px;
+  margin: 0px;
+  height: 60rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 350rpx;
+}
+
+.article .author-info text {
+  display: block;
+  float: left;
+  padding-left: 10rpx;
+}
+
+.article .content text {
+  display: block;
+  font-size: 35rpx;
+  color: #6a6a6a;
+  line-height: 60rpx;
+  margin-bottom: 40rpx;
+  text-align: justify;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.article .content .em {
+  font-style: italic;
+}
+
+.article .content .strong {
+  font-weight: bold;
+}
+
+.article .content text.qoute {
+  border-left: 2px solid #cde3f1;
+  padding-left: 20rpx;
+}
+
+.article .content image {
+  display: block;
+  width: 100%;
+  margin-bottom: 40rpx;
+}
+
+.article .discuss {
+  margin: 40rpx;
+  text-align: center;
+}
+
+.article .discuss navigator {
+  font-size: 30rpx;
+  background: #eee;
+  color: #555;
+  padding: 10rpx;
+  border-radius: 4rpx;
+}
+
+.article .discuss navigator:active {
+  background-color: #cde3f1;
+}
+
+.toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+  border-top: 1px solid #EEE;
+  background: #fff;
+}
+
+.toolbar .inner {
+  padding: 0 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.toolbar .item {
+  position: relative;
+  padding-top: 20rpx;
+  text-align: center;
+  width: 20%;
+  display: inline-block;
+}
+
+.toolbar .item .tip {
+  position: absolute;
+  display: block;
+  top: 20rpx;
+  right: 50%;
+  margin-right: -40rpx;
+  background: #019dd6;
+  color: #fff;
+  padding: 5rpx;
+  font-size: 16rpx;
+  border-radius: 20rpx;
+}
+
+.toolbar .item:active {
+  background: #fafafa;
+}
+
+.toolbar .item image {
+  width: 60rpx;
+  height: 60rpx;
+}

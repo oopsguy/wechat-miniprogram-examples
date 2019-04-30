@@ -1,0 +1,11 @@
+<swiper class="index-swiper" indicator-dots="true" interval="10000" autoplay="true">
+  <block wx:key="id" wx:for="{{dataSource}}">
+    <swiper-item data-item="{{item}}" bindtap="itemClick">
+      <image mode="aspectFill" src="{{item.image}}" style="width:100%" />
+      <view class="mask"></view>
+      <view class="desc">
+        <text>{{item.title}}</text>
+      </view>
+    </swiper-item>
+  </block>
+</swiper>

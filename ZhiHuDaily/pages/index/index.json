@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "slider": "../../components/slider/slider",
+    "floataction": "../../components/floataction/floataction",
+    "drawer": "../../components/drawer/drawer",
+    "nlist": "../../components/nlist/nlist"
+  }
+}

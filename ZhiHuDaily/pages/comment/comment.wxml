@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="headline">
+    <text>{{longCommentCount}}条长评</text>
+  </view>
+
+  <clist dataSource="{{longCommentData}}" voteIcon="../../images/like-fill-gay.png"></clist>
+
+  <view class="headline" bindtap="loadShortCommentEvent">
+    <text>{{shortCommentCount}}条短评</text>
+  </view>
+
+  <clist dataSource="{{shortCommentData}}" voteIcon="../../images/like-fill-gay.png"></clist>
+</view>

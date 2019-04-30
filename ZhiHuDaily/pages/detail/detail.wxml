@@ -1,0 +1,74 @@
+<view>
+  <view class="header-cover" wx:if="{{news.image}}">
+    <image mode="aspectFill" style="height:100%" src="{{news.image}}"></image>
+    <view class="mask" data-src="{{news.image}}" bindtap="previewImgEvent"></view>
+    <view class="desc">
+      <text>{{news.title}}</text>
+    </view>
+    <text class="cover-source">{{news.image_source}}</text>
+  </view>
+  <view class="black-desc" wx:else>
+    <text>{{news.title}}</text>
+  </view>
+
+  <view style="padding-bottom: 150rpx;">
+    <block wx:for="{{news.body}}" wx:key="index">
+      <view class="article">
+        <view class="title" wx:if="{{item.title && item.title != ''}}">
+          <text>{{item.title}}</text>
+        </view>
+        <view class="author-info" wx:if="{{(item.avatar && item.avatar != '') || (item.author && item.author != '') || (item.bio && item.bio != '')}}">
+          <image wx:if="{{item.avatar && item.avatar != ''}}" class="avatar" src="{{item.avatar}}"></image>
+          <text wx:if="{{item.author && item.author != ''}}" class="author-name">{{item.author}}</text>
+          <text wx:if="{{item.bio && item.bio != ''}}" class="author-mark">{{item.bio}}</text>
+        </view>
+        <view class="content" wx:if="{{item.content && item.content.length > 0}}">
+          <block wx:for="{{item.content}}" wx:key="index" wx:for-item="it">
+            <block wx:if="{{it.type == 'p'}}">
+              <text>{{it.value}}</text>
+            </block>
+            <block wx:elif="{{it.type == 'img'}}">
+              <image mode="aspectFill" src="{{it.value}}" data-src="{{it.value}}" bindtap="previewImgEvent" />
+            </block>
+            <block wx:elif="{{it.type == 'pstrong'}}">
+              <text class="strong">{{it.value}}</text>
+            </block>
+            <block wx:elif="{{it.type == 'pem'}}">
+              <text class="em">{{it.value}}</text>
+            </block>
+            <block wx:elif="{{it.type == 'blockquote'}}">
+              <text class="qoute">{{it.value}}</text>
+            </block>
+            <block wx:else>
+              <text>{{it.value}}</text>
+            </block>
+          </block>
+        </view>
+        <view class="discuss" wx:if="{{item.more && item.more != ''}}">
+          <navigator url="../webview/webview?src={{item.more}}#wechat_redirect">查看知乎讨论</navigator>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="toolbar">
+    <view class="inner">
+      <view class="item" bindtap="reloadEvent">
+        <image src="../../images/reload.png" />
+      </view>
+      <view class="item" bindtap="collectOrNot" wx:if="{{isCollect}}">
+        <image style="height:66rpx;width:66rpx" src="../../images/star-fill.png" />
+      </view>
+      <view class="item" bindtap="collectOrNot" wx:else>
+        <image style="height:66rpx;width:66rpx" src="../../images/star.png" />
+      </view>
+      <view class="item" data-id="{{id}}" bindtap="toCommentPage">
+        <image src="../../images/message.png" />
+        <view class="tip" wx:if="{{extraInfo}}">{{extraInfo.long_comments + extraInfo.short_comments}}</view>
+      </view>
+      <view class="item">
+        <image src="../../images/like.png" />
+        <view class="tip" wx:if="{{extraInfo}}">{{extraInfo.popularity}}</view>
+      </view>
+    </view>
+  </view>
+</view>
