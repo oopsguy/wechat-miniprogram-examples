@@ -1,5 +1,0 @@
-.headline {
-  font-size: 30rpx;
-  padding: 30rpx 40rpx;
-  border-bottom: 1px solid #eee;
-}

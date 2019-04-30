@@ -1,1 +1,0 @@
-<nlist dataSource="{{dataSource}}" bindclick="toDetailPage" bindlongclick="onLongTapEvent"></nlist>
