@@ -8,6 +8,8 @@
 
 ## 更新日志
 
+- [2020-01-11] 使用 [https://github.com/zce/douban-api-proxy](https://github.com/zce/douban-api-proxy) 提供的代理 API 来请求豆瓣数据
+
 - [2019-04-20] 修改代理数据响应逻辑，豆瓣图书 API 已经无法代理，需要 API key 才能访问，无解：
 
     ```json
@@ -61,6 +63,7 @@
 - [2016-10-29] 由于官方不定期升级 IDE，小程序的部分功能被修改和移除，导致之前的项目不能正常运行。现在的代码以最新版 IDE 运行环境为准，即 0.10.102800 版本，可[点击下载](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html)，虽然修改了代码以适应最新版本的开发环境，但是之前的有些布局和做法已经不再受到官方的支持，所以实际运行效果与效果图中的展示可能存在差异。
 
 ## 感谢
+
 `知乎日报`案例上传之后，有比较热心的网友贡献自己的代码修复了很多 bug，非常感谢
 
 - [@jkgeekJack](https://github.com/jkgeekJack)  

@@ -1,6 +1,6 @@
 <view wx:if="{{bookData}}">
   <view class="cover-container">
-    <image src="{{bookData.image}}"></image>
+    <image data-src="{{bookData.image}}" bindtap="previewImage" src="{{bookData.image}}"></image>
   </view>
 
   <view class="book-meta">

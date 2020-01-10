@@ -11,6 +11,8 @@
 	"libVersion": "1.9.94",
 	"appid": "",
 	"projectname": "MatterAssistant",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

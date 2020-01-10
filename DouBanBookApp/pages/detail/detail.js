@@ -34,5 +34,10 @@ Page({
       wx.hideLoading();
       wx.navigateBack();
     });
+  },
+  previewImage(e) {
+    wx.previewImage({
+      urls: [e.target.dataset.src]
+    })
   }
 });
